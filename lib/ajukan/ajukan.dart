@@ -20,7 +20,7 @@ class _AjukanPageState extends State<Ajukan> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,26 +45,29 @@ class _AjukanPageState extends State<Ajukan> {
             ),
             SizedBox(height: 24),
 
-            // Dropdown for Simpanan Type
-            DropdownButton<String>(
-              value: "Simpanan Deposito",
-              icon: Icon(Icons.arrow_drop_down),
-              style: TextStyle(
-                color: Color(0xFF7B5233),
-                fontSize: 16,
+            // Dropdown for Simpanan Type aligned to the right
+            Align(
+              alignment: Alignment.centerRight,
+              child: DropdownButton<String>(
+                value: "Simpanan Deposito",
+                icon: Icon(Icons.arrow_drop_down),
+                style: TextStyle(
+                  color: Color(0xFF7B5233),
+                  fontSize: 16,
+                ),
+                underline: Container(
+                  height: 2,
+                  color: Colors.transparent,
+                ),
+                onChanged: (String? newValue) {},
+                items: <String>['Simpanan Deposito', 'Simpanan Harian']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-              underline: Container(
-                height: 2,
-                color: Colors.transparent,
-              ),
-              onChanged: (String? newValue) {},
-              items: <String>['Simpanan Deposito', 'Simpanan Harian']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
             SizedBox(height: 24),
 
@@ -77,20 +80,35 @@ class _AjukanPageState extends State<Ajukan> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
+            SizedBox(height: 7),
+            Column(
               children: [
-                _buildOptionButton("Rp1.000.000", selectedNominal),
-                _buildOptionButton("Rp2.000.000", selectedNominal),
-                _buildOptionButton("Rp5.000.000", selectedNominal),
-                _buildOptionButton("Rp10.000.000", selectedNominal),
-                _buildOptionButton("Rp20.000.000", selectedNominal),
-                _buildOptionButton("Rp50.000.000", selectedNominal),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildOptionButton("Rp1.000.000", selectedNominal),
+                    SizedBox(width: 5),
+                    _buildOptionButton("Rp2.000.000", selectedNominal),
+                    SizedBox(width: 5),
+                    _buildOptionButton("Rp5.000.000", selectedNominal),
+                  ],
+                ),
+                SizedBox(height: 5),
+                Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _buildOptionButton("Rp10.000.000", selectedNominal),
+                      SizedBox(width: 5),
+                      _buildOptionButton("Rp20.000.000", selectedNominal),
+                      SizedBox(width: 5),
+                      _buildOptionButton("Rp50.000.000", selectedNominal),
+                    ],
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 20),
             Text(
               selectedNominal,
               style: TextStyle(
@@ -117,18 +135,37 @@ class _AjukanPageState extends State<Ajukan> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 8),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildOptionButton("3 Bulan", selectedJangkaWaktu),
-                _buildOptionButton("6 Bulan", selectedJangkaWaktu),
-                _buildOptionButton("12 Bulan", selectedJangkaWaktu),
+                Expanded(
+                  child: _buildOptionButton("3 Bulan", selectedJangkaWaktu),
+                ),
+                SizedBox(width: 5), // Add spacing between buttons
+                Expanded(
+                  child: _buildOptionButton("6 Bulan", selectedJangkaWaktu),
+                ),
+                SizedBox(width: 5), // Add spacing between buttons
+                Expanded(
+                  child: _buildOptionButton("12 Bulan", selectedJangkaWaktu),
+                ),
               ],
             ),
             SizedBox(height: 24),
 
-            // Checkbox Section
+            // Use Expanded or Spacer to push content to the bottom
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Other UI elements not needing position adjustment
+                  // ... code ...
+                ],
+              ),
+            ),
+
+            // Checkbox Section moved to be right above the Ajukan Button
             Row(
               children: [
                 Checkbox(
@@ -140,12 +177,12 @@ class _AjukanPageState extends State<Ajukan> {
                   },
                   activeColor: Color(0xFF7B5233),
                 ),
-                Expanded(
+                Flexible(
                   child: RichText(
                     text: TextSpan(
                       text: "Saya menyetujui ",
                       style: TextStyle(
-                        color: Color(0xFF7B5233),
+                        color: Color(0xB0B35933),
                         fontSize: 12,
                       ),
                       children: [
@@ -165,14 +202,13 @@ class _AjukanPageState extends State<Ajukan> {
                 ),
               ],
             ),
-            SizedBox(height: 24),
 
             // Ajukan Button
             ElevatedButton(
               onPressed: isChecked ? () {} : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF7B5233),
-                minimumSize: Size(double.infinity, 48),
+                minimumSize: Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -252,6 +288,7 @@ class _AjukanPageState extends State<Ajukan> {
         });
       },
       child: Container(
+        width: 113,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
           color: isSelected ? Color(0xFF7B5233) : Color(0xFFFFEBDC),
@@ -262,6 +299,7 @@ class _AjukanPageState extends State<Ajukan> {
           style: TextStyle(
             color: isSelected ? Colors.white : Color(0xFF7B5233),
             fontWeight: FontWeight.w600,
+            fontSize: 12,
           ),
         ),
       ),

@@ -14,6 +14,45 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   int _selectedIndex = 3;
 
+  // Create TextEditingControllers for each field
+  final TextEditingController fullNameController = TextEditingController(text: "Angelica Verga Augustine");
+  final TextEditingController usernameController = TextEditingController(text: "Angelica Augustine");
+  final TextEditingController emailController = TextEditingController(text: "angelicaaugustine321@gmail.com");
+  final TextEditingController phoneController = TextEditingController(text: "081234567890");
+  final TextEditingController addressController = TextEditingController(text: "Jln. Jempiring, Kuta Selatan, Badung");
+
+  // Function to show snackbar
+  void _showEditConfirmation(String field) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('$field has been changed!')),
+    );
+  }
+
+  // Widget to display editable fields
+  Widget _buildEditableDetailItem(String title, TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
+          ),
+          TextFormField(
+            controller: controller,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 10),
+            ),
+            onFieldSubmitted: (value) {
+              _showEditConfirmation(title);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +97,12 @@ class _ProfilState extends State<Profil> {
             ),
             const SizedBox(height: 10),
 
-            // Detail Items
-            _buildDetailItem("Full Name", "Angelica Verga Augustine"),
-            _buildDetailItem("Username", "Angelica Augustine"),
-            _buildDetailItem("Email", "angelicaaugustine321@gmail.com"),
-            _buildDetailItem("Phone", "081234567890"),
-            _buildDetailItem("Address", "Jln. Jempiring, Kuta Selatan, Badung"),
+            // Editable Personal Details
+            _buildEditableDetailItem("Full Name", fullNameController),
+            _buildEditableDetailItem("Username", usernameController),
+            _buildEditableDetailItem("Email", emailController),
+            _buildEditableDetailItem("Phone", phoneController),
+            _buildEditableDetailItem("Address", addressController),
 
             const SizedBox(height: 30),
 
@@ -117,32 +156,6 @@ class _ProfilState extends State<Profil> {
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
-        ],
-      ),
-    );
-  }
-
-  // Widget untuk item detail
-  Widget _buildDetailItem(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
-              ),
-              Text(
-                value,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
-              ),
-            ],
-          ),
-          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
         ],
       ),
     );

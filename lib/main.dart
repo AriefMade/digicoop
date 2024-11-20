@@ -1,4 +1,5 @@
 import 'package:digicoop/Dashboard/dashboard.dart';
+import 'package:digicoop/switch/switchNasabahPK.dart';
 import 'package:flutter/material.dart';
 
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Beranda(),
+      home: const RolePage(),
     );
   }
 }

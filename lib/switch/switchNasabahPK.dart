@@ -1,5 +1,6 @@
+import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
 import 'package:flutter/material.dart';
-import '../registrasiNasabah/registrasi.dart';
+import 'package:digicoop/Dashboard/dashboard.dart';
 
 class RolePage extends StatefulWidget {
   const RolePage({Key? key}) : super(key: key);
@@ -172,12 +173,11 @@ class _RolePageState extends State<RolePage> {
                     // Nasabah action here
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => registrasi()
+                        MaterialPageRoute(builder: (context) => Beranda()
                         ),
                     );
                   } else if (isPegawaiSelected) {
-                    // Pegawai action here
-                    print('Pegawai selected action executed');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BerandaPkl()));
                   }
                 },
                 child: Container(
