@@ -1,11 +1,13 @@
+import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
+import 'package:digicoop/Pekerja%20Keliling/profil/profilPKL.dart';
 import 'package:flutter/material.dart';
 
-class nasabahPkl extends StatefulWidget {
-  const nasabahPkl ({Key? key}) : super (key: key);
+class NasabahPkl extends StatefulWidget {
+  const NasabahPkl ({Key? key}) : super (key: key);
   @override
-  State<nasabahPkl> createState() => nasabahPklState();}
+  State<NasabahPkl> createState() => NasabahPklState();}
 
-class nasabahPklState extends State<nasabahPkl>{
+class NasabahPklState extends State<NasabahPkl>{
   int _selectedIndex = 0;
   // Data dummy untuk daftar nasabah
   final List<Map<String, dynamic>> nasabahList = [
@@ -134,23 +136,25 @@ class nasabahPklState extends State<nasabahPkl>{
       ),
       // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFFFDFCFB),
         selectedItemColor: Colors.brown,
-        unselectedItemColor: Colors.brown.withOpacity(0.6),
-        currentIndex: 1,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.groups),
-            label: 'Nasabah',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState((){
+            _selectedIndex = index;
+          });
+          if (index == 0){
+            Navigator.push(context,
+                MaterialPageRoute(builder : (context) => BerandaPkl())); }
+          else if (index == 2){
+            Navigator.push(context,
+                MaterialPageRoute(builder : (context) => profilPkl()));
+          }
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Nasabah'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
       ),
     );

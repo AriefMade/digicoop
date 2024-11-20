@@ -165,7 +165,7 @@ class _BerandaPklState extends State<BerandaPkl>{
               });
           if (index == 1){
             Navigator.push(context,
-                MaterialPageRoute(builder : (context) => nasabahPkl())); }
+                MaterialPageRoute(builder : (context) => NasabahPkl())); }
             else if (index == 2){
               Navigator.push(context,
                   MaterialPageRoute(builder : (context) => profilPkl()));

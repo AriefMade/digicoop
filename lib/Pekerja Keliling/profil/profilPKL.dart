@@ -1,6 +1,16 @@
+import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
+import 'package:digicoop/Pekerja%20Keliling/nasabah/nasabahPKL.dart';
 import 'package:flutter/material.dart';
 
-class profilPkl extends StatelessWidget {
+class profilPkl extends StatefulWidget {
+  const profilPkl ({Key? key}) : super (key: key);
+
+  @override
+  State<profilPkl> createState() => _profilPklState();}
+
+class _profilPklState extends State<profilPkl>{
+  int _selectedIndex = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,9 +137,31 @@ class profilPkl extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.brown,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState((){
+            _selectedIndex = index;
+          });
+          if (index == 1){
+            Navigator.push(context,
+                MaterialPageRoute(builder : (context) => BerandaPkl())); }
+          else if (index == 2){
+            Navigator.push(context,
+                MaterialPageRoute(builder : (context) => NasabahPkl()));
+          }
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Nasabah'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
     );
   }
-
+}
   // Widget untuk menampilkan item detail
   Widget buildDetailItem(String title, String value) {
     return Padding(
