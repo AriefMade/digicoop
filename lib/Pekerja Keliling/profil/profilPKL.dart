@@ -145,10 +145,10 @@ class _profilPklState extends State<profilPkl>{
           setState((){
             _selectedIndex = index;
           });
-          if (index == 1){
+          if (index == 0){
             Navigator.push(context,
                 MaterialPageRoute(builder : (context) => BerandaPkl())); }
-          else if (index == 2){
+          else if (index == 1){
             Navigator.push(context,
                 MaterialPageRoute(builder : (context) => NasabahPkl()));
           }
@@ -201,4 +201,3 @@ class _profilPklState extends State<profilPkl>{
       ),
     );
   }
-}
