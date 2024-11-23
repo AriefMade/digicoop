@@ -115,11 +115,12 @@ class NasabahPklState extends State<NasabahPkl>{
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFFFF2E6), // Warna cream button
                             elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal:   9.0, vertical: 8.0),
                           ),
                           child: const Text(
                             'View Details',
                             style: TextStyle(
+                              fontSize: 15,
                               color: Colors.brown,
                               fontWeight: FontWeight.bold,
                             ),

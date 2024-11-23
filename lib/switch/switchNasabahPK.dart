@@ -22,21 +22,6 @@ class _RolePageState extends State<RolePage> {
         decoration: BoxDecoration(color: Colors.white),
         child: Stack(
           children: [
-            // Top Status Bar
-            Positioned(
-              left: 31.96,
-              top: 21,
-              child: Text(
-                '9:41',
-                style: TextStyle(
-                  color: Color(0xFF020202),
-                  fontSize: 15,
-                  fontFamily: 'SF Pro Text',
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.32,
-                ),
-              ),
-            ),
             // Welcome Text
             Positioned(
               left: 30,
@@ -101,7 +86,7 @@ class _RolePageState extends State<RolePage> {
                           height: 40,
                           decoration: BoxDecoration(
                             color: isNasabahSelected 
-                                ? Color(0xFF6A584E) 
+                                ? Color(0xFF6A584E)
                                 : Color(0xFFFFEBDC),
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -109,7 +94,9 @@ class _RolePageState extends State<RolePage> {
                             child: Text(
                               'Nasabah',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: isNasabahSelected
+                                    ? Color(0xFFFFEBDC)
+                                    : Color(0xFF6A584E),
                                 fontSize: 18,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
@@ -139,7 +126,9 @@ class _RolePageState extends State<RolePage> {
                             child: Text(
                               'Pegawai',
                               style: TextStyle(
-                                color: Color(0xFF7B5233),
+                                color: isPegawaiSelected 
+                                    ? Colors.white 
+                                    : Color(0xFF7B5233),
                                 fontSize: 18,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
@@ -165,7 +154,7 @@ class _RolePageState extends State<RolePage> {
             ),
             // Continue Button
             Positioned(
-              left: 147,
+              left: 110,
               top: 752,
               child: GestureDetector(
                 onTap: () {
@@ -181,8 +170,8 @@ class _RolePageState extends State<RolePage> {
                   }
                 },
                 child: Container(
-                  width: 100,
-                  height: 30,
+                  width: 180,
+                  height: 50,
                   decoration: BoxDecoration(
                     color: Color(0xFF6A584E),
                     borderRadius: BorderRadius.circular(8),
