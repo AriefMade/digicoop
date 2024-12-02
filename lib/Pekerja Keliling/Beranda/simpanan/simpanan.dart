@@ -24,7 +24,7 @@ class _SimpananState extends State<Simpanan>{
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.brown),
-          onPressed: () {},
+          onPressed: () {Navigator.pop(context);},
         ),
       ),
       body: Padding(

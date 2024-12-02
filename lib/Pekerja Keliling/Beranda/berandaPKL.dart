@@ -4,6 +4,9 @@ import 'package:digicoop/Pekerja%20Keliling/nasabah/nasabahPKL.dart';
 import 'package:digicoop/Pekerja%20Keliling/profil/profilPKL.dart';
 import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerVisited.dart';
 import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerRemaining.dart';
+import 'package:digicoop/Pekerja Keliling/Beranda/penarikan/Penarikan.dart';
+import 'package:digicoop/Pekerja Keliling/Beranda/rekap harian/rekapHarian.dart';
+import 'package:digicoop/Pekerja Keliling/Beranda/riwayat nasabah/riwayatNasabah.dart';
 
 class BerandaPkl extends StatefulWidget {
   const BerandaPkl({Key? key}) : super(key: key);
@@ -288,7 +291,39 @@ class _BerandaPklState extends State<BerandaPkl> {
       color: Colors.white, // Set color for each menu card
       elevation: 3,
       child: InkWell(
-        onTap: () {}, // Add navigation if needed
+        onTap: () {
+      // Logika navigasi berdasarkan title
+      switch (title) {
+        case 'Simpanan':
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Simpanan()), // Ganti dengan page Simpanan
+          );
+          break;
+        case 'Penarikan':
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>
+                Penarikan()), // Ganti dengan page Penarikan
+          );
+          break;
+        case 'Rekap Harian':
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>
+                RekapHarian()), // Ganti dengan page RekapHarian
+          );
+          break;
+        case 'Riwayat Nasabah':
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>
+                RiwayatNasabah()), // Ganti dengan page RiwayatNasabah
+          );
+          break;
+      }
+        }, // Add navigation if needed
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
           child: Row(
