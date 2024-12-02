@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
 import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
+import 'package:digicoop/Pekerja Keliling/Beranda/kunjungan/customerVisited.dart';
 
 class BerandaPkl extends StatefulWidget {
   const BerandaPkl({Key? key}) : super(key: key);
@@ -107,7 +108,14 @@ class _BerandaPklState extends State<BerandaPkl> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CustomerVisited()),
+                              );
+                            },
+                          child : Container(
                             padding: const EdgeInsets.all(13.0),
                             decoration: BoxDecoration(
                               color: Colors.grey[200],
@@ -130,6 +138,7 @@ class _BerandaPklState extends State<BerandaPkl> {
                                   ),
                                 ),
                               ],
+                              ),
                             ),
                           ),
                           //11 customer remaining
