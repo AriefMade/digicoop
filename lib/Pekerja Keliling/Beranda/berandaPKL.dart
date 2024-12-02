@@ -1,7 +1,9 @@
+import 'package:digicoop/Pekerja%20Keliling/Beranda/simpanan/simpanan.dart';
 import 'package:flutter/material.dart';
-import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
-import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
-import 'package:digicoop/Pekerja Keliling/Beranda/kunjungan/customerVisited.dart';
+import 'package:digicoop/Pekerja%20Keliling/nasabah/nasabahPKL.dart';
+import 'package:digicoop/Pekerja%20Keliling/profil/profilPKL.dart';
+import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerVisited.dart';
+import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerRemaining.dart';
 
 class BerandaPkl extends StatefulWidget {
   const BerandaPkl({Key? key}) : super(key: key);
@@ -104,7 +106,7 @@ class _BerandaPklState extends State<BerandaPkl> {
                       ),
                       SizedBox(height: 10),
 
-                      //25 customer
+                      // 25 customer
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -115,58 +117,66 @@ class _BerandaPklState extends State<BerandaPkl> {
                                 MaterialPageRoute(builder: (context) => CustomerVisited()),
                               );
                             },
-                          child : Container(
-                            padding: const EdgeInsets.all(13.0),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  '25',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF69574D),
+                            child: Container(
+                              padding: const EdgeInsets.all(13.0),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    '25',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF69574D),
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Customer Visited',
-                                  style: TextStyle(
-                                    color: Color(0xFF67554B),
+                                  Text(
+                                    'Customer Visited',
+                                    style: TextStyle(
+                                      color: Color(0xFF67554B),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
                               ),
                             ),
                           ),
-                          //11 customer remaining
-                          Container (
-                            padding: const EdgeInsets.all(13.0),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child : Column(
-                              children: [
-                                Text(
-                                  '11',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF69574D),
+                          // 11 customer remaining
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CustomerRemaining()),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(13.0),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    '11',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF69574D),
+                                    ),
                                   ),
-                                ),
-                                Text('Customer Remaining',
-                                  style : TextStyle(
-                                    color: Color(0xFF69574D),
-                                  )
-                                ),
-                              ],
+                                  Text(
+                                    'Customer Remaining',
+                                    style: TextStyle(
+                                      color: Color(0xFF69574D),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          //beda bagian
                         ],
                       ),
                     ],
