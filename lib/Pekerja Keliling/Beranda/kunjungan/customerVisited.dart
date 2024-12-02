@@ -1,3 +1,4 @@
+import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerRemaining.dart';
 import 'package:flutter/material.dart';
 
 class CustomerVisited extends StatefulWidget {
@@ -43,27 +44,30 @@ class _CustomerVisitedState extends State<CustomerVisited> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.brown[100],
-                      foregroundColor: Colors.brown,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                  Expanded(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color(0xFF6A584E),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                      ),
+                      onPressed: () {},
+                      child: const Text("Customer Visited",style:(TextStyle(fontWeight: FontWeight.bold)),),
                     ),
-                    onPressed: () {},
-                    child: const Text("Customer Visited"),
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.brown[50],
-                      foregroundColor: Colors.brown,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                  Expanded(
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.brown[50],
+                        foregroundColor: Colors.brown,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                      ),
+                      onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerRemaining()),);},
+                      child: const Text("Customer Remaining"),
                     ),
-                    onPressed: () {},
-                    child: const Text("Customer Remaining"),
                   ),
                 ],
               ),
@@ -86,17 +90,22 @@ class _CustomerVisitedState extends State<CustomerVisited> {
             ),
             const SizedBox(height: 16),
             const SizedBox(
-              width: 109,
-              height: 20,
-              child: Text(
-                '15 Desember 2024',
-                style: TextStyle(
-                  color: Color(0xFF6A584E),
-                  fontSize: 12,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  height: 0.9, // Corrected height for better text rendering
-                  letterSpacing: -0.32,
+              width: double.infinity,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    '15 Desember 2024',
+                    style: TextStyle(
+                      color: Color(0xFF6A584E),
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      height: 0.9, // Corrected height for better text rendering
+                      letterSpacing: -0.32,
+                    ),
+                  ),
                 ),
               ),
             ),
