@@ -38,7 +38,6 @@ class _RolePageState extends State<RolePage> {
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  SizedBox(height: 10),
                   Text(
                     'Pilih Role Anda\nterlebih dahulu.',
                     style: TextStyle(
@@ -56,7 +55,7 @@ class _RolePageState extends State<RolePage> {
               left: 30,
               top: 290,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
                     child: Text(
@@ -71,7 +70,7 @@ class _RolePageState extends State<RolePage> {
                   ),
                   SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Nasabah Button
                       GestureDetector(
@@ -105,6 +104,7 @@ class _RolePageState extends State<RolePage> {
                           ),
                         ),
                       ),
+                      SizedBox(width: 10),
                       // Pegawai Button
                       GestureDetector(
                         onTap: () {

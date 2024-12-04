@@ -13,6 +13,7 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   int _selectedIndex = 0;
+  int _saldoIndex = 2; // Set to 2 to test "Sisa Pinjaman"
 
   String formatCurrency(double amount) {
     return 'Rp ${amount.toStringAsFixed(0).replaceAllMapped(
@@ -72,7 +73,6 @@ class _BerandaState extends State<Beranda> {
                     ),
                   ],
                 ),
-
                 // Bagian Notifikasi
                 Stack(
                   children: [
@@ -100,66 +100,80 @@ class _BerandaState extends State<Beranda> {
                 ),
               ],
             ),
-
             SizedBox(height: 10),
-
             // Saldo Tabungan
-            Container(
-              alignment: Alignment.bottomLeft,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Color(0xFF7B5233),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Saldo Tabungan',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
+            GestureDetector(
+              onHorizontalDragEnd: (details) {
+                setState(() {
+                  if (details.primaryVelocity! > 0) {
+                    // Swipe Right
+                    _saldoIndex = (_saldoIndex - 1) % 3;
+                    if (_saldoIndex < 0) _saldoIndex = 2;
+                  } else if (details.primaryVelocity! < 0) {
+                    // Swipe Left
+                    _saldoIndex = (_saldoIndex + 1) % 3;
+                  }
+                });
+              },
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Color(0xFF7B5233),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _saldoIndex == 0 ? 'Saldo Tabungan'
+                      : _saldoIndex == 1 ? 'Saldo Deposito'
+                      : 'Sisa Pinjaman',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Rp 15.000.000,00',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                    SizedBox(height: 8),
+                    Text(
+                      _saldoIndex == 0 ? 'Rp 15.000.000,00'
+                      : _saldoIndex == 1 ? 'Rp 25.000.000,00'
+                      : 'Rp 10.000.000,00', // Example value for Sisa Pinjaman
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 4),
-                  Row(
-                    children: [
-                      Text(
-                       '17965-36512',
-                       style: TextStyle(
-                         fontSize: 14,
-                         fontWeight: FontWeight.w300,
-                         color: Colors.white,
-                       ),
-                     ),
-                     SizedBox(width: 4),
-                     GestureDetector(
-                       onTap: () {
-                        Clipboard.setData(ClipboardData(text: '17965-36512'));  // Copy the text to clipboard
-                         ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(content: Text('Nomor akun disalin ke clipboard'))
-                         );
-                       },
-                        child: Icon(Icons.copy, size: 18, color: Colors.grey),  // Move Icon inside GestureDetector
-                     ),
-
-                    ],
-                  ),
-                ],
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          '17965-36512',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: () {
+                            Clipboard.setData(ClipboardData(text: '17965-36512'));  // Copy the text to clipboard
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Nomor akun disalin ke clipboard'))
+                            );
+                          },
+                          child: Icon(Icons.copy, size: 18, color: Colors.grey),  // Move Icon inside GestureDetector
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 20),
-
             // Menu Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +185,6 @@ class _BerandaState extends State<Beranda> {
               ],
             ),
             SizedBox(height: 20),
-
             // Ringkasan Keuangan
             Text(
               'Ringkasan Keuangan',
@@ -228,7 +241,6 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
             SizedBox(height: 20),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween, // Tambahkan ini
               children: [
@@ -246,7 +258,6 @@ class _BerandaState extends State<Beranda> {
                 ),
               ],
             ),
-
             // Transaksi Terbaru
             Text(
               'Transaksi Terbaru',
@@ -256,31 +267,30 @@ class _BerandaState extends State<Beranda> {
               ),
             ),
             SizedBox(height: 8),
-
             Container(
-            child: Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Icon(Icons.arrow_downward, color: Colors.brown),
-                    title: Text(
-                      'Pinjaman',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: Icon(Icons.arrow_downward, color: Colors.brown),
+                      title: Text(
+                        'Pinjaman',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    subtitle: Text('Rp 5.000.000,00'),
-                    trailing: Text(
-                      '12/07/2024\n10:15',
-                      textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  );
-                },
+                      subtitle: Text('Rp 5.000.000,00'),
+                      trailing: Text(
+                        '12/07/2024\n10:15',
+                        textAlign: TextAlign.right,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
             ),
             SizedBox(height: 20),
           ],
