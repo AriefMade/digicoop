@@ -1,8 +1,10 @@
+import 'package:digicoop/Dashboard/notifikasipage.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:digicoop/Profil/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 
 class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -13,13 +15,7 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   int _selectedIndex = 0;
-  int _saldoIndex = 2; // Set to 2 to test "Sisa Pinjaman"
-
-  String formatCurrency(double amount) {
-    return 'Rp ${amount.toStringAsFixed(0).replaceAllMapped(
-      RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.',
-    )}';
-  }
+  int _saldoIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -37,28 +33,26 @@ class _BerandaState extends State<Beranda> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 35),
-            // Header
+            const SizedBox(height: 35),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage(
-                          'assets/user_image.png'), // Ganti nanti dengan user input
+                    const CircleAvatar(
+                      backgroundImage: AssetImage('assets/user_image.png'),
                       radius: 28,
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           'Selamat Pagi,',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
-                            color: Colors.grey[700],
+                            color: Colors.grey,
                           ),
                         ),
                         Text(
@@ -73,20 +67,29 @@ class _BerandaState extends State<Beranda> {
                     ),
                   ],
                 ),
-                // Bagian Notifikasi
                 Stack(
                   children: [
-                    Icon(Icons.notifications,
-                        size: 28, color: Colors.grey[700]),
-                    Positioned(
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NotifikasiNb(),
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        Icons.notifications,
+                        size: 28,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    const Positioned(
                       right: 0,
                       top: 0,
-                      child: Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          shape: BoxShape.circle,
-                        ),
+                      child: CircleAvatar(
+                        radius: 10,
+                        backgroundColor: Colors.red,
                         child: Text(
                           '5',
                           style: TextStyle(
@@ -100,56 +103,56 @@ class _BerandaState extends State<Beranda> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            // Saldo Tabungan
+            const SizedBox(height: 10),
             GestureDetector(
               onHorizontalDragEnd: (details) {
                 setState(() {
                   if (details.primaryVelocity! > 0) {
-                    // Swipe Right
                     _saldoIndex = (_saldoIndex - 1) % 3;
                     if (_saldoIndex < 0) _saldoIndex = 2;
                   } else if (details.primaryVelocity! < 0) {
-                    // Swipe Left
                     _saldoIndex = (_saldoIndex + 1) % 3;
                   }
                 });
               },
               child: Container(
-                alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Color(0xFF7B5233),
+                  color: const Color(0xFF7B5233),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _saldoIndex == 0 ? 'Saldo Tabungan'
-                      : _saldoIndex == 1 ? 'Saldo Deposito'
-                      : 'Sisa Pinjaman',
-                      style: TextStyle(
+                      _saldoIndex == 0
+                          ? 'Saldo Tabungan'
+                          : _saldoIndex == 1
+                              ? 'Saldo Deposito'
+                              : 'Sisa Pinjaman',
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      _saldoIndex == 0 ? 'Rp 15.000.000,00'
-                      : _saldoIndex == 1 ? 'Rp 25.000.000,00'
-                      : 'Rp 10.000.000,00', // Example value for Sisa Pinjaman
-                      style: TextStyle(
+                      _saldoIndex == 0
+                          ? 'Rp 15.000.000,00'
+                          : _saldoIndex == 1
+                              ? 'Rp 25.000.000,00'
+                              : 'Rp 10.000.000,00',
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           '17965-36512',
                           style: TextStyle(
                             fontSize: 14,
@@ -157,15 +160,19 @@ class _BerandaState extends State<Beranda> {
                             color: Colors.white,
                           ),
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         GestureDetector(
                           onTap: () {
-                            Clipboard.setData(ClipboardData(text: '17965-36512'));  // Copy the text to clipboard
+                            Clipboard.setData(
+                                const ClipboardData(text: '17965-36512'));
                             ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Nomor akun disalin ke clipboard'))
+                              const SnackBar(
+                                  content: Text(
+                                      'Nomor akun disalin ke clipboard')),
                             );
                           },
-                          child: Icon(Icons.copy, size: 18, color: Colors.grey),  // Move Icon inside GestureDetector
+                          child: const Icon(Icons.copy,
+                              size: 18, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -173,8 +180,7 @@ class _BerandaState extends State<Beranda> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            // Menu Buttons
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -184,18 +190,17 @@ class _BerandaState extends State<Beranda> {
                 _buildMenuButton(Icons.receipt_long, 'Rekap'),
               ],
             ),
-            SizedBox(height: 20),
-            // Ringkasan Keuangan
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Ringkasan Keuangan',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(12),
@@ -204,7 +209,7 @@ class _BerandaState extends State<Beranda> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    children: [
+                    children: const [
                       Text(
                         'Simpanan',
                         style: TextStyle(color: Colors.green),
@@ -221,7 +226,7 @@ class _BerandaState extends State<Beranda> {
                     ],
                   ),
                   Column(
-                    children: [
+                    children: const [
                       Text(
                         'Penarikan',
                         style: TextStyle(color: Colors.red),
@@ -240,16 +245,16 @@ class _BerandaState extends State<Beranda> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Tambahkan ini
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Selisih',
                   style: TextStyle(color: Colors.black),
                 ),
                 Text(
-                  '${isPositive ? '+' : '-'} $formattedSelisih', // Perbaiki format
+                  '${isPositive ? '+' : '-'} $formattedSelisih',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -258,71 +263,68 @@ class _BerandaState extends State<Beranda> {
                 ),
               ],
             ),
-            // Transaksi Terbaru
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Transaksi Terbaru',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
-            Container(
-              child: Expanded(
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Icon(Icons.arrow_downward, color: Colors.brown),
-                      title: Text(
-                        'Pinjaman',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading:
+                        const Icon(Icons.arrow_downward, color: Colors.brown),
+                    title: const Text(
+                      'Pinjaman',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
-                      subtitle: Text('Rp 5.000.000,00'),
-                      trailing: Text(
-                        '12/07/2024\n10:15',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    );
-                  },
-                ),
+                    ),
+                    subtitle: const Text('Rp 5.000.000,00'),
+                    trailing: const Text(
+                      '12/07/2024\n10:15',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  );
+                },
               ),
             ),
-            SizedBox(height: 20),
           ],
         ),
       ),
-      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.brown,
         unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex, // State untuk index yang dipilih
+        currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
-          if (index == 1){
-            Navigator.push(context, MaterialPageRoute (builder: (context) => Riwayat())
-          );
+          if (index == 1) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Riwayat()));
+          } else if (index == 2) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Ajukan()));
+          } else if (index == 3) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Profil()));
           }
-          else if (index == 2){
-           Navigator.push(context, MaterialPageRoute (builder: (context) => Ajukan())
-         );
-        }
-          else if (index == 3){
-            Navigator.push(context, MaterialPageRoute (builder: (context) => Profil())
-            );
-          }
-          },
-        items: [
+        },
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add), label: 'Ajukan'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'Profil'),
         ],
       ),
     );
@@ -332,14 +334,14 @@ class _BerandaState extends State<Beranda> {
     return Column(
       children: [
         CircleAvatar(
-          backgroundColor: Color(0xFFFFEBDC),
+          backgroundColor: const Color(0xFFFFEBDC),
           radius: 30,
-          child: Icon(icon, color: Color(0xFF7B5233), size: 28),
+          child: Icon(icon, color: const Color(0xFF7B5233), size: 28),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF7B5233),
             fontSize: 14,
           ),
@@ -347,4 +349,11 @@ class _BerandaState extends State<Beranda> {
       ],
     );
   }
+}
+
+String formatCurrency(double amount) {
+  return 'Rp ${amount.toStringAsFixed(0).replaceAllMapped(
+        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+        (match) => '${match[1]}.',
+      )}';
 }
