@@ -36,7 +36,7 @@ class _NotifikasiNbState extends State<NotifikasiNb> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.qr_code, color: Colors.brown),
+            icon: Icon(Icons.check_box_rounded, color : Colors.brown),
             onPressed: () {
               // Add logic for additional features
             },
