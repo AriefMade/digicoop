@@ -78,11 +78,12 @@ class _RiwayatState extends State<Riwayat> {
                 )
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 1),
 
             // Transactions List
             Expanded(
               child: ListView(
+                padding: EdgeInsets.only(top: 1),
                 children: [
                   _buildTransactionDate("12 Juli 2024"),
                   _buildTransactionItem(
