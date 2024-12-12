@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Profil/profil.dart';
+
 class Riwayat extends StatefulWidget {
   const Riwayat({Key? key}) : super(key: key);
 
   @override
   _RiwayatState createState() => _RiwayatState();
 }
+
 class _RiwayatState extends State<Riwayat> {
   int _selectedIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +78,10 @@ class _RiwayatState extends State<Riwayat> {
                       onPressed: () {},
                     ),
                   ],
-                )
+                ),
               ],
             ),
             SizedBox(height: 1),
-
-            // Transactions List
             Expanded(
               child: ListView(
                 padding: EdgeInsets.only(top: 1),
@@ -139,7 +140,6 @@ class _RiwayatState extends State<Riwayat> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
       ),
-
     );
   }
 

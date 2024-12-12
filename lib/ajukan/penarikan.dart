@@ -2,19 +2,18 @@ import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
-import 'package:digicoop/ajukan/pinjaman.dart';
 
-class Ajukan extends StatefulWidget {
+class pinjaman extends StatefulWidget {
   @override
-  _AjukanPageState createState() => _AjukanPageState();
+  _PinjamanPageState createState() => _PinjamanPageState();
 }
 
-class _AjukanPageState extends State<Ajukan> {
+class _PinjamanPageState extends State<pinjaman> {
   String selectedNominal = "Rp10.000.000";
   String selectedJangkaWaktu = "6 Bulan";
   bool isChecked = false;
   int _selectedIndex = 2;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,51 +35,26 @@ class _AjukanPageState extends State<Ajukan> {
             Row(
               children: [
                 Expanded(
-                  child: _buildTabButton("Simpanan", true),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => pinjaman()),
-                      );
-                    },
-                    child: _buildTabButton("Pinjaman", false),
+                  child : GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);},
+                    child: _buildTabButton("Simpanan", false),
                   ),
                 ),
                 Expanded(
-                  child: _buildTabButton("Penarikan", false),
+                  child: _buildTabButton("Pinjaman", true),),
+                Expanded(
+                  child: GestureDetector(
+                      onTap: () {
+                        //Navigator.push(
+                        //context,
+                        //MaterialPageRoute(builder: (context) =>())
+                        //);
+                      },
+                      child: _buildTabButton("Penarikan", false)
+                  ),
                 ),
               ],
-            ),
-            SizedBox(height: 24),
-            Align(
-              alignment: Alignment.centerRight,
-              child: DropdownButton<String>(
-                value: "Simpanan Deposito",
-                icon: Icon(Icons.arrow_drop_down),
-                style: TextStyle(
-                  color: Color(0xFF7B5233),
-                  fontSize: 16,
-                ),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,
-                ),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    // Add logic to handle dropdown value change
-                  });
-                },
-                items: <String>['Simpanan Deposito', 'Simpanan Harian']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
             ),
             SizedBox(height: 24),
             Text(

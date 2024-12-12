@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
-import 'package:flutter/services.dart';
 
 class Profil extends StatefulWidget {
   const Profil({Key? key}) : super(key: key);
@@ -14,42 +13,83 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   int _selectedIndex = 3;
 
-  // Create TextEditingControllers for each field
   final TextEditingController fullNameController = TextEditingController(text: "Angelica Verga Augustine");
   final TextEditingController usernameController = TextEditingController(text: "Angelica Augustine");
   final TextEditingController emailController = TextEditingController(text: "angelicaaugustine321@gmail.com");
   final TextEditingController phoneController = TextEditingController(text: "081234567890");
+  final TextEditingController workAreaController = TextEditingController(text: "Banjar Lukluk, Mengwi, Badung, Bali");
   final TextEditingController addressController = TextEditingController(text: "Jln. Jempiring, Kuta Selatan, Badung");
 
-  // Function to show snackbar
   void _showEditConfirmation(String field) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('$field has been changed!')),
     );
   }
 
-  // Widget to display editable fields
   Widget _buildEditableDetailItem(String title, TextEditingController controller) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 14, color: Colors.grey),
-          ),
-          TextFormField(
-            controller: controller,
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  controller.text,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-            onFieldSubmitted: (value) {
-              _showEditConfirmation(title);
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit, color: Colors.grey),
+            onPressed: () {
+              _editField(title, controller);
             },
           ),
         ],
       ),
+    );
+  }
+
+  void _editField(String title, TextEditingController controller) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Edit $title"),
+          content: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: title,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  // Trigger state update on save
+                });
+                _showEditConfirmation(title);
+                Navigator.pop(context);
+              },
+              child: const Text("Save"),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -70,41 +110,57 @@ class _ProfilState extends State<Profil> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // Avatar dan Nama
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/avatar.jpg'), // Sesuaikan path gambar
+              backgroundImage: AssetImage('assets/images/avatar.jpg'),
             ),
             const SizedBox(height: 15),
             const Text(
               "Angelica Verga Augustine",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.brown),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF6A584E)),
             ),
             const Text(
               "angelicaaugustine321@gmail.com",
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 13, color: Color(0xFF6A584E)),
             ),
             const SizedBox(height: 30),
 
-            // Personal Details
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: const Text(
-                "Personal Details",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.brown),
+            // Bagian Personal Details
+              ClipRRect(
+                borderRadius: BorderRadius.circular(7),
+                child:
+                  Container(
+                    width: 333,
+                    height: 40,
+                    color: const Color(0xFFFFEFE2), // Background color
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Personal Details",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF6A584E),
+                      ),
+                    ),
+                  ),
               ),
+
+            Column(
+              children: [
+                _buildEditableDetailItem("Full Name", fullNameController),
+                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Username", usernameController),
+                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Email", emailController),
+                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Phone", phoneController),
+                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Work Area", workAreaController),
+                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Address", addressController),
+              ],
             ),
-            const SizedBox(height: 10),
-
-            // Editable Personal Details
-            _buildEditableDetailItem("Full Name", fullNameController),
-            _buildEditableDetailItem("Username", usernameController),
-            _buildEditableDetailItem("Email", emailController),
-            _buildEditableDetailItem("Phone", phoneController),
-            _buildEditableDetailItem("Address", addressController),
-
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
 
             // Tombol Logout
             Padding(
@@ -126,7 +182,6 @@ class _ProfilState extends State<Profil> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -147,11 +202,10 @@ class _ProfilState extends State<Profil> {
               } else if (index == 2) {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Ajukan()));
               }
-              // Handle other pages as needed
             });
           }
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
