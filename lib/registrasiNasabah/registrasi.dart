@@ -71,6 +71,8 @@ class registrasi extends StatelessWidget {
               SizedBox(height: 16),
               PasswordField(hintText: 'Masukkan password anda'),
               SizedBox(height: 16),
+              PasswordField(hintText: 'Masukkan ID nasabah anda'),
+              SizedBox(height: 32),
               Center(
                 child: SizedBox(
                   width: 150,
@@ -98,7 +100,7 @@ class registrasi extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Implementasi navigasi ke halaman login
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>loginnb()));
                   },
                   child: Text(
                     'Sudah memiliki akun? Login di sini',
@@ -111,7 +113,6 @@ class registrasi extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.help, color: Colors.orange),
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginnb()));
                   },
                 ),
               ),

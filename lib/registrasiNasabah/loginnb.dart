@@ -1,4 +1,5 @@
 // text.dart
+import 'package:digicoop/registrasiNasabah/registrasi.dart';
 import 'package:flutter/material.dart';
 
 class loginnb extends StatelessWidget {
@@ -25,7 +26,7 @@ class loginnb extends StatelessWidget {
             children: [
               SizedBox(height: 16),
               Text(
-                'Selamat Datang!',
+                'Hai, Nasabah!!',
                 style: TextStyle(
                   color: Color(0xFF7B5233),
                   fontSize: 40,
@@ -34,7 +35,7 @@ class loginnb extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'Lengkapi data dirimu untuk memulai perjalanan baru!',
+                'Login akunmu dengan lengkapi data dirimu!!',
                 style: TextStyle(
                   color: Color(0xFFD68F59),
                   fontSize: 30,
@@ -57,8 +58,6 @@ class loginnb extends StatelessWidget {
               ),
               SizedBox(height: 16),
               PasswordField(hintText: 'Masukkan password anda'),
-              SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan ID nasabah anda'),
               SizedBox(height: 32),
               Center(
                 child: SizedBox(
@@ -87,23 +86,32 @@ class loginnb extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Implementasi navigasi ke halaman login
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registrasi()));
                   },
                   child: Text(
-                    'Sudah memiliki akun? Login di sini',
+                    'Belum memiliki akun? Klik disini',
                     style: TextStyle(color: Color(0xFFD68F59), fontSize: 10),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 150),
               Center(
-                child: IconButton(
-                  icon: Icon(Icons.help, color: Colors.orange),
-                  onPressed: () {
-                    // Implementasi tombol Help
-                  },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.help, color: Colors.orange),
+                      onPressed: () {
+                      },
+                      padding: EdgeInsets.zero,
+                    ), // Reduced height to bring text closer to icon
+                    Text(
+                      "Help",
+                      style: TextStyle(color: Color(0xFFD68F59)),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),

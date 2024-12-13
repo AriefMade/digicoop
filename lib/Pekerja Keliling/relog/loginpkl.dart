@@ -1,8 +1,9 @@
+import 'package:digicoop/Pekerja%20Keliling/relog/registrasipkl.dart';
 import 'package:flutter/material.dart';
 
-class loginpkl extends StatelessWidget {
-  const loginpkl({Key? key}) : super(key: key);
-
+class LoginPkl extends StatelessWidget {
+  const LoginPkl({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +11,7 @@ class loginpkl extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.brown),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.brown),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -22,18 +23,18 @@ class loginpkl extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 16),
-              Text(
-                'Selamat Datang!',
+              const SizedBox(height: 16),
+              const Text(
+                'Hai, Pegawai!!',
                 style: TextStyle(
                   color: Color(0xFF7B5233),
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
-              Text(
-                'Lengkapi data dirimu untuk memulai perjalanan baru!',
+              const SizedBox(height: 8),
+              const Text(
+                'Login akunmu dengan lengkapi data dirimu!!',
                 style: TextStyle(
                   color: Color(0xFFD68F59),
                   fontSize: 30,
@@ -41,44 +42,29 @@ class loginpkl extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(height: 32),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Masukkan email anda',
-                  hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
-                  filled: true,
-                  fillColor: Color(0xFFFFEBDC),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              TextField(
+              const SizedBox(height: 32),
+              const TextField(
                 decoration: InputDecoration(
                   hintText: 'Masukkan username anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
                   filled: true,
                   fillColor: Color(0xFFFFEBDC),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     borderSide: BorderSide.none,
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan password anda'),
-              SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan ID nasabah anda'),
-              SizedBox(height: 32),
+              const SizedBox(height: 16),
+              const PasswordField(hintText: 'Masukkan password anda'),
+              const SizedBox(height: 32),
               Center(
                 child: SizedBox(
                   width: 150,
                   height: 35,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6A584E),
+                      backgroundColor: const Color(0xFF6A584E),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -86,8 +72,8 @@ class loginpkl extends StatelessWidget {
                     onPressed: () {
                       // Implementasi tombol Daftar
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 0),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 0),
                       child: Text(
                         'Daftar',
                         style: TextStyle(color: Colors.white, fontSize: 15),
@@ -99,23 +85,33 @@ class loginpkl extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Implementasi navigasi ke halaman login
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => registrasipkl( )));
                   },
-                  child: Text(
-                    'Sudah memiliki akun? Login di sini',
+                  child: const Text(
+                    'Belum memiliki akun? Klik disini',
                     style: TextStyle(color: Color(0xFFD68F59), fontSize: 10),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 150),
               Center(
-                child: IconButton(
-                  icon: Icon(Icons.help, color: Colors.orange),
-                  onPressed: () {
-                    // Implementasi tombol Help
-                  },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.help, color: Colors.orange),
+                      onPressed: () {
+                        // Implementasi tombol Help
+                      },
+                      padding: EdgeInsets.zero,
+                    ),
+                    const Text(
+                      "Help",
+                      style: TextStyle(color: Color(0xFFD68F59)),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -127,7 +123,7 @@ class loginpkl extends StatelessWidget {
 class PasswordField extends StatefulWidget {
   final String hintText;
 
-  PasswordField({required this.hintText});
+  const PasswordField({required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -143,9 +139,9 @@ class _PasswordFieldState extends State<PasswordField> {
         obscureText: _obscureText,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
+          hintStyle: const TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
           filled: true,
-          fillColor: Color(0xFFFFEBDC),
+          fillColor: const Color(0xFFFFEBDC),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide: BorderSide.none,
