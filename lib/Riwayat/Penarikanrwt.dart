@@ -1,20 +1,19 @@
-import 'package:digicoop/Riwayat/Penarikanrwt.dart';
 import 'package:digicoop/Riwayat/Pinjamanrwt.dart';
+import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Riwayat/rentangwaktu.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Profil/profil.dart';
 
-
-class Riwayat extends StatefulWidget {
-  const Riwayat({Key? key}) : super(key: key);
+class Penarikanrwt extends StatefulWidget {
+  const Penarikanrwt({Key? key}) : super(key: key);
 
   @override
-  _RiwayatState createState() => _RiwayatState();
+  _PenarikanrwtState createState() => _PenarikanrwtState();
 }
 
-class _RiwayatState extends State<Riwayat> {
+class _PenarikanrwtState extends State<Penarikanrwt> {
   int _selectedIndex = 1;
 
   @override
@@ -40,19 +39,17 @@ class _RiwayatState extends State<Riwayat> {
             // Tabs
             Row(
               children: [
-                _buildTabButton("Simpanan", true),
+                Expanded(
+                  child : GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => Riwayat()));},
+                    child : _buildTabButton("Simpanan", false),),),
                   Expanded(
                     child : GestureDetector(
-                    onTap: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => Pinjamanrwt()));},
-                    child : _buildTabButton("Pinjaman", false),),),
-
-                    Expanded(
-                     child : GestureDetector(
-                       onTap: (){
-                         Navigator.push(context,MaterialPageRoute(builder: (context) => Penarikanrwt()));},
-                    child :  _buildTabButton("Penarikan", false),
-                     ),),
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => Pinjamanrwt()));},
+                    child : _buildTabButton("Pinjaman", false), ),),
+                 _buildTabButton("Penarikan", true),
               ],
             ),
             SizedBox(height: 16),
@@ -93,7 +90,6 @@ class _RiwayatState extends State<Riwayat> {
                     IconButton(
                       icon: Icon(Icons.download, color: Color(0xFF7B5233)),
                       onPressed: () {
-                        // Implement download functionality here
                       },
                     ),
                   ],

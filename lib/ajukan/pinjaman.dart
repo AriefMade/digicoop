@@ -1,4 +1,6 @@
 import 'package:digicoop/Dashboard/dashboard.dart';
+import 'package:digicoop/ajukan/ajukan.dart';
+import 'package:digicoop/ajukan/penarikan.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
@@ -37,7 +39,9 @@ class _PinjamanPageState extends State<pinjaman> {
                 Expanded(
                   child : GestureDetector(
                 onTap: (){
-                  Navigator.pop(context);},
+                  Navigator.push(
+                    context,
+                  MaterialPageRoute(builder: (context) => Ajukan()));},
                   child: _buildTabButton("Simpanan", false),
                   ),
                 ),
@@ -46,10 +50,10 @@ class _PinjamanPageState extends State<pinjaman> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      //Navigator.push(
-                        //context,
-                        //MaterialPageRoute(builder: (context) =>())
-                      //);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>penarikan())
+                      );
                       },
                       child: _buildTabButton("Penarikan", false)
                   ),

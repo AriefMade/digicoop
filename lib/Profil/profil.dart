@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
+import 'package:flutter/services.dart';
 
 class Profil extends StatefulWidget {
   const Profil({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _ProfilState extends State<Profil> {
     );
   }
 
-  Widget _buildEditableDetailItem(String title, TextEditingController controller) {
+  Widget _buildEditableDetailItem(String title, TextEditingController controller, {bool editable = true}) {
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -49,12 +50,14 @@ class _ProfilState extends State<Profil> {
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.edit, color: Colors.grey),
-            onPressed: () {
-              _editField(title, controller);
-            },
-          ),
+          editable 
+              ? IconButton(
+                  icon: const Icon(Icons.keyboard_arrow_right, color: Colors.brown),
+                  onPressed: () {
+                    _editField(title, controller);
+                  },
+                )
+              : Container(), // Empty container if not editable
         ],
       ),
     );
@@ -126,37 +129,31 @@ class _ProfilState extends State<Profil> {
             const SizedBox(height: 30),
 
             // Bagian Personal Details
-              ClipRRect(
-                borderRadius: BorderRadius.circular(7),
-                child:
-                  Container(
-                    width: 333,
-                    height: 40,
-                    color: const Color(0xFFFFEFE2), // Background color
-                    alignment: Alignment.center,
-                    child: const Text(
-                      "Personal Details",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF6A584E),
-                      ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(7),
+              child:
+                Container(
+                  width: 333,
+                  height: 40,
+                  color: const Color(0xFFFFEFE2), // Background color
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Personal Details",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF6A584E),
                     ),
                   ),
-              ),
+                ),
+            ),
 
             Column(
               children: [
                 _buildEditableDetailItem("Full Name", fullNameController),
-                Divider(height: 1, color: Colors.grey[300]),
                 _buildEditableDetailItem("Username", usernameController),
-                Divider(height: 1, color: Colors.grey[300]),
-                _buildEditableDetailItem("Email", emailController),
-                Divider(height: 1, color: Colors.grey[300]),
-                _buildEditableDetailItem("Phone", phoneController),
-                Divider(height: 1, color: Colors.grey[300]),
-                _buildEditableDetailItem("Work Area", workAreaController),
-                Divider(height: 1, color: Colors.grey[300]),
+                _buildEditableDetailItem("Email", emailController, editable: false),
+                _buildEditableDetailItem("Phone", phoneController, editable: false),
                 _buildEditableDetailItem("Address", addressController),
               ],
             ),
@@ -167,7 +164,27 @@ class _ProfilState extends State<Profil> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: ElevatedButton(
                 onPressed: () {
-                  // Aksi logout
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Log Out'),
+                      content:
+                      const Text('Apakah Anda yakin ingin keluar akun?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Batal'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            SystemNavigator.pop();
+                            // Tambahkan logika log out di sini
+                          },
+                          child: const Text('Keluar'),
+                        ),
+                      ],
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.brown,

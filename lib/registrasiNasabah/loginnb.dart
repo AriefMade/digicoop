@@ -1,8 +1,8 @@
+// text.dart
 import 'package:flutter/material.dart';
-import 'package:digicoop/registrasiNasabah/loginnb.dart';
 
-class registrasi extends StatelessWidget {
-  const registrasi({Key? key}) : super(key: key);
+class loginnb extends StatelessWidget {
+  const loginnb({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,19 +45,6 @@ class registrasi extends StatelessWidget {
               SizedBox(height: 32),
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Masukkan email anda',
-                  hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
-                  filled: true,
-                  fillColor: Color(0xFFFFEBDC),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              TextField(
-                decoration: InputDecoration(
                   hintText: 'Masukkan username anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
                   filled: true,
@@ -71,6 +58,8 @@ class registrasi extends StatelessWidget {
               SizedBox(height: 16),
               PasswordField(hintText: 'Masukkan password anda'),
               SizedBox(height: 16),
+              PasswordField(hintText: 'Masukkan ID nasabah anda'),
+              SizedBox(height: 32),
               Center(
                 child: SizedBox(
                   width: 150,
@@ -111,7 +100,7 @@ class registrasi extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.help, color: Colors.orange),
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginnb()));
+                    // Implementasi tombol Help
                   },
                 ),
               ),

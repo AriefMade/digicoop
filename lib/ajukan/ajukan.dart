@@ -1,4 +1,5 @@
 import 'package:digicoop/Dashboard/dashboard.dart';
+import 'package:digicoop/ajukan/penarikan.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
@@ -50,7 +51,15 @@ class _AjukanPageState extends State<Ajukan> {
                   ),
                 ),
                 Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => penarikan()),
+                      );
+                    },
                   child: _buildTabButton("Penarikan", false),
+                ),
                 ),
               ],
             ),

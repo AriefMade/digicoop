@@ -1,14 +1,17 @@
 import 'package:digicoop/Dashboard/dashboard.dart';
+import 'package:digicoop/ajukan/ajukan.dart';
+import 'package:digicoop/ajukan/pilihbank.dart';
+import 'package:digicoop/ajukan/pinjaman.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
 
-class pinjaman extends StatefulWidget {
+class penarikan extends StatefulWidget {
   @override
-  _PinjamanPageState createState() => _PinjamanPageState();
+  _PenarikanPageState createState() => _PenarikanPageState();
 }
 
-class _PinjamanPageState extends State<pinjaman> {
+class _PenarikanPageState extends State<penarikan> {
   String selectedNominal = "Rp10.000.000";
   String selectedJangkaWaktu = "6 Bulan";
   bool isChecked = false;
@@ -37,23 +40,24 @@ class _PinjamanPageState extends State<pinjaman> {
                 Expanded(
                   child : GestureDetector(
                     onTap: (){
-                      Navigator.pop(context);},
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => Ajukan()));},
                     child: _buildTabButton("Simpanan", false),
                   ),
                 ),
                 Expanded(
-                  child: _buildTabButton("Pinjaman", true),),
-                Expanded(
                   child: GestureDetector(
-                      onTap: () {
-                        //Navigator.push(
-                        //context,
-                        //MaterialPageRoute(builder: (context) =>())
-                        //);
-                      },
-                      child: _buildTabButton("Penarikan", false)
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => pinjaman())
+                      );
+                    },
+                  child: _buildTabButton("Pinjaman", false)
                   ),
                 ),
+                Expanded(
+                      child: _buildTabButton("Penarikan", true)
+                  ),
               ],
             ),
             SizedBox(height: 24),
@@ -111,7 +115,7 @@ class _PinjamanPageState extends State<pinjaman> {
             ),
             SizedBox(height: 24),
             Text(
-              "Jangka Waktu",
+              "Metode Penarikan",
               style: TextStyle(
                 color: Color(0xFF7B5233),
                 fontSize: 16,
@@ -123,15 +127,15 @@ class _PinjamanPageState extends State<pinjaman> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                  child: _buildOptionButton("3 Bulan", selectedJangkaWaktu),
+                  child: _buildOptionButton("E-Wallet", selectedJangkaWaktu),
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: _buildOptionButton("6 Bulan", selectedJangkaWaktu),
+                  child: _buildOptionButton("Bank", selectedJangkaWaktu),
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: _buildOptionButton("12 Bulan", selectedJangkaWaktu),
+                  child: _buildOptionButton("Tunai", selectedJangkaWaktu),
                 ),
               ],
             ),
@@ -140,7 +144,31 @@ class _PinjamanPageState extends State<pinjaman> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Additional UI elements
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Pilih E-Wallet/Bank",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF7B5233),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.arrow_forward),
+                            color: Color(0xFF7B5233),
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => pilihbank()));
+                            },
+                          ),
+                        ],
+                      ),
+                      Divider(thickness: 1, color: Color(0xFF7B5233)),
+                    ],
+                  ),
                 ],
               ),
             ),

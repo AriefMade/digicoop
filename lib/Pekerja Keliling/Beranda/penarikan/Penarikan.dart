@@ -66,7 +66,7 @@ class _PenarikanState extends State<Penarikan>{
                         ? Colors.green
                         : index == 2
                         ? Colors.red
-                        : Colors.blue,
+                        : Colors.blue, //TODO : gak keliatan kalau makek biru
                   );
                 },
               ),

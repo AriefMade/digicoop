@@ -1,6 +1,7 @@
 import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
 import 'package:digicoop/Pekerja%20Keliling/nasabah/nasabahPKL.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class profilPkl extends StatefulWidget {
   const profilPkl ({Key? key}) : super (key: key);
@@ -101,7 +102,6 @@ class _profilPklState extends State<profilPkl>{
                   ),
                 ),
                 onPressed: () {
-                  // Aksi logout
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -116,7 +116,7 @@ class _profilPklState extends State<profilPkl>{
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            // Tambahkan logika log out di sini
+                            SystemNavigator.pop();
                           },
                           child: const Text('Keluar'),
                         ),

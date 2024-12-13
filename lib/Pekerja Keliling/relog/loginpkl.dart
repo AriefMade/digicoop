@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:digicoop/registrasiNasabah/loginnb.dart';
 
-class registrasi extends StatelessWidget {
-  const registrasi({Key? key}) : super(key: key);
+class loginpkl extends StatelessWidget {
+  const loginpkl({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +70,8 @@ class registrasi extends StatelessWidget {
               SizedBox(height: 16),
               PasswordField(hintText: 'Masukkan password anda'),
               SizedBox(height: 16),
+              PasswordField(hintText: 'Masukkan ID nasabah anda'),
+              SizedBox(height: 32),
               Center(
                 child: SizedBox(
                   width: 150,
@@ -111,7 +112,7 @@ class registrasi extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.help, color: Colors.orange),
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>loginnb()));
+                    // Implementasi tombol Help
                   },
                 ),
               ),

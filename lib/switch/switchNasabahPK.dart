@@ -1,4 +1,6 @@
 import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
+import 'package:digicoop/Pekerja%20Keliling/relog/registrasipkl.dart';
+import 'package:digicoop/registrasiNasabah/registrasi.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 
@@ -162,11 +164,11 @@ class _RolePageState extends State<RolePage> {
                     // Nasabah action here
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Beranda()
+                        MaterialPageRoute(builder: (context) => registrasi()
                         ),
                     );
                   } else if (isPegawaiSelected) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BerandaPkl()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => registrasipkl()));
                   }
                 },
                 child: Container(
