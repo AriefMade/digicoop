@@ -112,12 +112,22 @@ class registrasipkl extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Center(
-                child: IconButton(
-                  icon: Icon(Icons.help, color: Colors.orange),
-                  onPressed: () {
-                  },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: Color(0xFFD68F59),
+                      size: 28,
+                    ),
+                    Text(
+                      "help",
+                      style: TextStyle(
+                        color: Color(0xFFD68F59),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),

@@ -25,7 +25,7 @@ class LoginPkl extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               const Text(
-                'Hai, Pegawai!!',
+                'Hai, Pegawai!',
                 style: TextStyle(
                   color: Color(0xFF7B5233),
                   fontSize: 40,
@@ -34,7 +34,7 @@ class LoginPkl extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Login akunmu dengan lengkapi data dirimu!!',
+                'Login akunmu dengan lengkapi data dirimu!',
                 style: TextStyle(
                   color: Color(0xFFD68F59),
                   fontSize: 30,
@@ -96,18 +96,17 @@ class LoginPkl extends StatelessWidget {
               const SizedBox(height: 150),
               Center(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.help, color: Colors.orange),
-                      onPressed: () {
-                        // Implementasi tombol Help
-                      },
-                      padding: EdgeInsets.zero,
+                    Icon(
+                      Icons.info_outline,
+                      color: Color(0xFFD68F59),
+                      size: 28,
                     ),
-                    const Text(
-                      "Help",
-                      style: TextStyle(color: Color(0xFFD68F59)),
+                    Text(
+                      "help",
+                      style: TextStyle(
+                        color: Color(0xFFD68F59),
+                      ),
                     ),
                   ],
                 ),

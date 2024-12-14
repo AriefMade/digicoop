@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:digicoop/registrasiNasabah/loginnb.dart';
 
 class registrasi extends StatelessWidget {
-  const registrasi({Key? key}) : super(key: key);
+  registrasi({Key? key}) : super(key: key);
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController idNasabahController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +49,7 @@ class registrasi extends StatelessWidget {
               ),
               SizedBox(height: 32),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: 'Masukkan email anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
@@ -57,6 +63,7 @@ class registrasi extends StatelessWidget {
               ),
               SizedBox(height: 16),
               TextField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   hintText: 'Masukkan username anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
@@ -69,9 +76,9 @@ class registrasi extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan password anda'),
+              PasswordField(controller: passwordController, hintText: 'Masukkan password anda'),
               SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan ID nasabah anda'),
+              PasswordField(controller: idNasabahController, hintText: 'Masukkan ID nasabah anda'),
               SizedBox(height: 32),
               Center(
                 child: SizedBox(
@@ -85,7 +92,11 @@ class registrasi extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      // Implementasi tombol Daftar
+                      // Handle form submission
+                      print('Email: ${emailController.text}');
+                      print('Username: ${usernameController.text}');
+                      print('Password: ${passwordController.text}');
+                      print('ID Nasabah: ${idNasabahController.text}');
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0),
@@ -110,12 +121,22 @@ class registrasi extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Center(
-                child: IconButton(
-                  icon: Icon(Icons.help, color: Colors.orange),
-                  onPressed: () {
-                  },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: Color(0xFFD68F59),
+                      size: 28,
+                    ),
+                    Text(
+                      "help",
+                      style: TextStyle(
+                        color: Color(0xFFD68F59),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -125,9 +146,10 @@ class registrasi extends StatelessWidget {
 }
 
 class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
 
-  PasswordField({required this.hintText});
+  PasswordField({required this.controller, required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -140,6 +162,7 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextField(
+        controller: widget.controller,
         obscureText: _obscureText,
         decoration: InputDecoration(
           hintText: widget.hintText,

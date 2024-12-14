@@ -26,7 +26,7 @@ class loginnb extends StatelessWidget {
             children: [
               SizedBox(height: 16),
               Text(
-                'Hai, Nasabah!!',
+                'Hai, Nasabah!',
                 style: TextStyle(
                   color: Color(0xFF7B5233),
                   fontSize: 40,
@@ -35,7 +35,7 @@ class loginnb extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'Login akunmu dengan lengkapi data dirimu!!',
+                'Login akunmu dengan lengkapi data dirimu!',
                 style: TextStyle(
                   color: Color(0xFFD68F59),
                   fontSize: 30,
@@ -97,17 +97,17 @@ class loginnb extends StatelessWidget {
               SizedBox(height: 150),
               Center(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.help, color: Colors.orange),
-                      onPressed: () {
-                      },
-                      padding: EdgeInsets.zero,
-                    ), // Reduced height to bring text closer to icon
+                    Icon(
+                      Icons.info_outline,
+                      color: Color(0xFFD68F59),
+                      size: 28,
+                    ),
                     Text(
-                      "Help",
-                      style: TextStyle(color: Color(0xFFD68F59)),
+                      "help",
+                      style: TextStyle(
+                        color: Color(0xFFD68F59),
+                      ),
                     ),
                   ],
                 ),
