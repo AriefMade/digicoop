@@ -2,7 +2,7 @@ import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerVisited.da
 import 'package:flutter/material.dart';
 
 class CustomerRemaining extends StatefulWidget {
-  const CustomerRemaining({Key? key}) : super(key: key);
+  const CustomerRemaining({super.key});
 
   @override
   State<CustomerRemaining> createState() => _CustomerRemainingState();

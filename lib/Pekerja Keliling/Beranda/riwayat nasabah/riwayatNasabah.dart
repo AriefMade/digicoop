@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:digicoop/Pekerja Keliling/Beranda/berandaPKL.dart';
-import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
-import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
 
 class RiwayatNasabah extends StatefulWidget {
+  const RiwayatNasabah({super.key});
+
   @override
   State<RiwayatNasabah> createState() => _RiwayatNasabahState();
 }

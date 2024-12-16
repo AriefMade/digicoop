@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotifikasiNb extends StatefulWidget {
-  const NotifikasiNb({Key? key}) : super(key: key);
+  const NotifikasiNb({super.key});
 
   @override
   State<NotifikasiNb> createState() => _NotifikasiNbState();

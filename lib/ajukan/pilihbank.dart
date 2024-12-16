@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class pilihbank extends StatefulWidget {
-  const pilihbank({Key? key}) : super(key: key);
+  const pilihbank({super.key});
 
   @override
   _pilihbankState createState() => _pilihbankState();
@@ -81,7 +81,7 @@ class _pilihbankState extends State<pilihbank> {
           groupValue: selectedOption,
           onChanged: (value) {
             setState(() {
-              selectedOption = value as String?;
+              selectedOption = value;
             });
           },
           activeColor: Colors.brown,

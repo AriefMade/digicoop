@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:digicoop/Pekerja Keliling/Beranda/berandaPKL.dart';
-import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
-import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
 
 class Simpanan extends StatefulWidget {
-  const Simpanan({Key? key}) : super(key: key);
+  const Simpanan({super.key});
 
   @override
   State<Simpanan> createState() => _SimpananState();

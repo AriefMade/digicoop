@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class profilPkl extends StatefulWidget {
-  const profilPkl ({Key? key}) : super (key: key);
+  const profilPkl ({super.key});
 
   @override
   State<profilPkl> createState() => _profilPklState();}

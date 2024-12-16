@@ -3,7 +3,7 @@ import 'package:digicoop/Pekerja%20Keliling/profil/profilPKL.dart';
 import 'package:flutter/material.dart';
 
 class NasabahPkl extends StatefulWidget {
-  const NasabahPkl ({Key? key}) : super (key: key);
+  const NasabahPkl ({super.key});
   @override
   State<NasabahPkl> createState() => NasabahPklState();}
 
@@ -166,7 +166,7 @@ class NasabahPklState extends State<NasabahPkl>{
 class DetailNasabahPage extends StatelessWidget {
   final Map<String, dynamic> nasabah;
 
-  const DetailNasabahPage({required this.nasabah, Key? key}) : super(key: key);
+  const DetailNasabahPage({required this.nasabah, super.key});
 
   @override
   Widget build(BuildContext context) {

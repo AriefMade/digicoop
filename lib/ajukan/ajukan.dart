@@ -6,6 +6,8 @@ import 'package:digicoop/Profil/profil.dart';
 import 'package:digicoop/ajukan/pinjaman.dart';
 
 class Ajukan extends StatefulWidget {
+  const Ajukan({super.key});
+
   @override
   _AjukanPageState createState() => _AjukanPageState();
 }

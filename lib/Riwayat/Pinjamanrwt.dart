@@ -7,7 +7,7 @@ import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Profil/profil.dart';
 
 class Pinjamanrwt extends StatefulWidget {
-  const Pinjamanrwt({Key? key}) : super(key: key);
+  const Pinjamanrwt({super.key});
 
   @override
   _PinjamanrwtState createState() => _PinjamanrwtState();

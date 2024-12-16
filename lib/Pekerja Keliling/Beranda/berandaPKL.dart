@@ -9,7 +9,7 @@ import 'package:digicoop/Pekerja Keliling/Beranda/rekap harian/rekapHarian.dart'
 import 'package:digicoop/Pekerja Keliling/Beranda/riwayat nasabah/riwayatNasabah.dart';
 
 class BerandaPkl extends StatefulWidget {
-  const BerandaPkl({Key? key}) : super(key: key);
+  const BerandaPkl({super.key});
 
   @override
   State<BerandaPkl> createState() => _BerandaPklState();

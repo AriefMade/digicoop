@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 
 class Beranda extends StatefulWidget {
-  const Beranda({Key? key}) : super(key: key);
+  const Beranda({super.key});
 
   @override
   State<Beranda> createState() => _BerandaState();

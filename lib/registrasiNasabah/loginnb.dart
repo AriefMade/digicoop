@@ -123,7 +123,7 @@ class loginnb extends StatelessWidget {
 class PasswordField extends StatefulWidget {
   final String hintText;
 
-  PasswordField({required this.hintText});
+  const PasswordField({super.key, required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();

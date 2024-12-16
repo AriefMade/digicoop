@@ -1,10 +1,9 @@
 import 'package:digicoop/Pekerja%20Keliling/relog/loginpkl.dart';
-import 'package:digicoop/registrasiNasabah/loginnb.dart';
 import 'package:flutter/material.dart';
 
 
 class registrasipkl extends StatelessWidget {
-  const registrasipkl({Key? key}) : super(key: key);
+  const registrasipkl({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +138,7 @@ class registrasipkl extends StatelessWidget {
 class PasswordField extends StatefulWidget {
   final String hintText;
 
-  PasswordField({required this.hintText});
+  const PasswordField({super.key, required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();

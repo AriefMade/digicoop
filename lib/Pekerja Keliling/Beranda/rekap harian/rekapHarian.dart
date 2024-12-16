@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:digicoop/Pekerja Keliling/Beranda/berandaPKL.dart';
-import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
-import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
 
 class RekapHarian extends StatefulWidget {
-  const RekapHarian({Key? key}) : super(key: key);
+  const RekapHarian({super.key});
 
   @override
   State<RekapHarian> createState() => _RekapHarianState();
@@ -44,9 +41,9 @@ class _RekapHarianState extends State<RekapHarian>{
                 ),
               ),
               items: [
-                DropdownMenuItem(child: Text("Semua Transaksi"), value: "all"),
-                DropdownMenuItem(child: Text("Pemasukan"), value: "income"),
-                DropdownMenuItem(child: Text("Pengeluaran"), value: "expense"),
+                DropdownMenuItem(value: "all", child: Text("Semua Transaksi")),
+                DropdownMenuItem(value: "income", child: Text("Pemasukan")),
+                DropdownMenuItem(value: "expense", child: Text("Pengeluaran")),
               ],
               onChanged: (value) {},
             ),
@@ -116,7 +113,7 @@ class TransaksiCard extends StatelessWidget {
   final int amount; // Positif untuk pemasukan, negatif untuk pengeluaran
   final String time;
 
-  const TransaksiCard({required this.amount, required this.time});
+  const TransaksiCard({super.key, required this.amount, required this.time});
 
   @override
   Widget build(BuildContext context) {

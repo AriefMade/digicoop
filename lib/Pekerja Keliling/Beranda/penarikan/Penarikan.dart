@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:digicoop/Pekerja Keliling/Beranda/berandaPKL.dart';
-import 'package:digicoop/Pekerja Keliling/nasabah/nasabahPKL.dart';
-import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
 
 class Penarikan extends StatefulWidget {
-  const Penarikan({Key? key}) : super(key: key);
+  const Penarikan({super.key});
 
   @override
   State<Penarikan> createState() => _PenarikanState();
@@ -101,7 +98,7 @@ class PenarikanCard extends StatelessWidget {
   final String status;
   final Color color;
 
-  const PenarikanCard({required this.status, required this.color});
+  const PenarikanCard({super.key, required this.status, required this.color});
 
   @override
   Widget build(BuildContext context) {

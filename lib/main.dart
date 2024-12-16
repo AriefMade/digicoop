@@ -1,5 +1,3 @@
-import 'package:digicoop/Dashboard/dashboard.dart';
-import 'package:digicoop/registrasiNasabah/registrasi.dart';
 import 'package:digicoop/switch/switchNasabahPK.dart';
 import 'package:flutter/material.dart';
 

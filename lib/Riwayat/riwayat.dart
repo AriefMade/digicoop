@@ -8,7 +8,7 @@ import 'package:digicoop/Profil/profil.dart';
 
 
 class Riwayat extends StatefulWidget {
-  const Riwayat({Key? key}) : super(key: key);
+  const Riwayat({super.key});
 
   @override
   _RiwayatState createState() => _RiwayatState();

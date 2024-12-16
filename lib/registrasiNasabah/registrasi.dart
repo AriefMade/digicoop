@@ -1,13 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:digicoop/registrasiNasabah/loginnb.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class AuthService {
+  final String baseUrl = 'https://localhost:8000/api'; // Replace with your backend URL
+
+  Future<void> registerUser(String email, String username, String password, String idNasabah) async {
+    final url = Uri.parse('$baseUrl/register');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'name': username,
+        'email': email,
+        'password': password,
+        'idNasabah': idNasabah,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      // Success
+      print('User Registered Successfully');
+    } else {
+      // Handle error
+      print('Failed to register user: ${response.body}');
+    }
+  }
+
+  Future<void> loginUser(String email, String password) async {
+    final url = Uri.parse('$baseUrl/login');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // Successfully logged in
+      var data = json.decode(response.body);
+      String token = data['token'];
+      print('User Logged in Successfully, Token: $token');
+    } else {
+      // Handle error
+      print('Login failed: ${response.body}');
+    }
+  }
+}
 
 class registrasi extends StatelessWidget {
-  registrasi({Key? key}) : super(key: key);
+  registrasi({super.key});
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController idNasabahController = TextEditingController();
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +146,17 @@ class registrasi extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    onPressed: () {
-                      // Handle form submission
-                      print('Email: ${emailController.text}');
-                      print('Username: ${usernameController.text}');
-                      print('Password: ${passwordController.text}');
-                      print('ID Nasabah: ${idNasabahController.text}');
+                    onPressed: () async {
+                      try {
+                        await authService.registerUser(
+                          emailController.text,
+                          usernameController.text,
+                          passwordController.text,
+                          idNasabahController.text,
+                        );
+                      } catch (e) {
+                        print(e.toString());
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0),
@@ -149,7 +209,7 @@ class PasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
 
-  PasswordField({required this.controller, required this.hintText});
+  const PasswordField({super.key, required this.controller, required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();

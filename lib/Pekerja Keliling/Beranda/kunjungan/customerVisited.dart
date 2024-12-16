@@ -2,7 +2,7 @@ import 'package:digicoop/Pekerja%20Keliling/Beranda/kunjungan/customerRemaining.
 import 'package:flutter/material.dart';
 
 class CustomerVisited extends StatefulWidget {
-  const CustomerVisited({Key? key}) : super(key: key);
+  const CustomerVisited({super.key});
 
   @override
   State<CustomerVisited> createState() => _CustomerVisitedState();

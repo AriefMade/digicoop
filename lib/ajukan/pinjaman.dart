@@ -6,6 +6,8 @@ import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
 
 class pinjaman extends StatefulWidget {
+  const pinjaman({super.key});
+
   @override
   _PinjamanPageState createState() => _PinjamanPageState();
 }

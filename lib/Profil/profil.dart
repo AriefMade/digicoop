@@ -5,7 +5,7 @@ import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:flutter/services.dart';
 
 class Profil extends StatefulWidget {
-  const Profil({Key? key}) : super(key: key);
+  const Profil({super.key});
 
   @override
   _ProfilState createState() => _ProfilState();

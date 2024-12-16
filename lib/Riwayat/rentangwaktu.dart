@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class rentangwaktu extends StatefulWidget {
-  const rentangwaktu({Key? key}) : super(key: key);
+  const rentangwaktu({super.key});
 
   @override
   _rentangwaktuState createState() => _rentangwaktuState();
@@ -80,7 +80,7 @@ class _rentangwaktuState extends State<rentangwaktu> {
           groupValue: selectedOption,
           onChanged: (value) {
             setState(() {
-              selectedOption = value as String?;
+              selectedOption = value;
             });
           },
           activeColor: Colors.brown,

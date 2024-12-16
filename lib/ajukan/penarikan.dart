@@ -7,6 +7,8 @@ import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
 
 class penarikan extends StatefulWidget {
+  const penarikan({super.key});
+
   @override
   _PenarikanPageState createState() => _PenarikanPageState();
 }

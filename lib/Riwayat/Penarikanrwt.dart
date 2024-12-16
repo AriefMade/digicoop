@@ -7,7 +7,7 @@ import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Profil/profil.dart';
 
 class Penarikanrwt extends StatefulWidget {
-  const Penarikanrwt({Key? key}) : super(key: key);
+  const Penarikanrwt({super.key});
 
   @override
   _PenarikanrwtState createState() => _PenarikanrwtState();
