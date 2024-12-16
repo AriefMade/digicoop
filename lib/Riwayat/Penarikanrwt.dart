@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/Profil/profil.dart';
-
+//TODO : disini dibuat 2 logic aja, pending dan selesai
 class Penarikanrwt extends StatefulWidget {
   const Penarikanrwt({super.key});
 

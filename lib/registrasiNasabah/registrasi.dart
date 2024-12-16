@@ -1,3 +1,4 @@
+import 'package:digicoop/constants/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/registrasiNasabah/loginnb.dart';
 import 'package:http/http.dart' as http;
@@ -58,11 +59,12 @@ class AuthService {
 class registrasi extends StatelessWidget {
   registrasi({super.key});
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController idNasabahController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _idNasabahController = TextEditingController();
   final AuthService authService = AuthService();
+  final AuthenticationController _authenticationController = Get.put(AuthenticationController())
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +106,7 @@ class registrasi extends StatelessWidget {
               ),
               SizedBox(height: 32),
               TextField(
-                controller: emailController,
+                controller: _emailController,
                 decoration: InputDecoration(
                   hintText: 'Masukkan email anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
@@ -118,7 +120,7 @@ class registrasi extends StatelessWidget {
               ),
               SizedBox(height: 16),
               TextField(
-                controller: usernameController,
+                controller: _usernameController,
                 decoration: InputDecoration(
                   hintText: 'Masukkan username anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
@@ -131,43 +133,47 @@ class registrasi extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              PasswordField(controller: passwordController, hintText: 'Masukkan password anda'),
+              PasswordField(controller: _passwordController, hintText: 'Masukkan password anda'),
               SizedBox(height: 16),
-              PasswordField(controller: idNasabahController, hintText: 'Masukkan ID nasabah anda'),
+              PasswordField(controller: _idNasabahController, hintText: 'Masukkan ID nasabah anda'),
               SizedBox(height: 32),
-              Center(
-                child: SizedBox(
-                  width: 150,
-                  height: 35,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6A584E),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+              Obx(() {
+                return _authenticationController.isLoading.value
+                    ?const CircularProgressIndicator()
+                  : Center(
+                  child: SizedBox(
+                    width: 150,
+                    height: 35,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF6A584E),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
-                    ),
-                    onPressed: () async {
-                      try {
-                        await authService.registerUser(
-                          emailController.text,
-                          usernameController.text,
-                          passwordController.text,
-                          idNasabahController.text,
-                        );
-                      } catch (e) {
-                        print(e.toString());
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 0),
-                      child: Text(
-                        'Daftar',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      onPressed: () async {
+                        try {
+                          await authService.registerUser(
+                            _emailController.text.trim(),
+                            _usernameController.text.trim(),
+                            _passwordController.text.trim(),
+                            _idNasabahController.text.trim(),
+                          );
+                        } catch (e) {
+                          print(e.toString());
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 0),
+                        child: Text(
+                          'Daftar',
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              }
               Center(
                 child: TextButton(
                   onPressed: () {

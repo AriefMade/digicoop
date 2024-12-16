@@ -104,7 +104,7 @@ class _ProfilState extends State<Profil> {
         elevation: 0,
         title: const Text(
           "Profil",
-          style: TextStyle(color: Colors.brown),
+          style: TextStyle(color: Colors.brown, fontWeight: FontWeight.w800, fontSize: 24),
         ),
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.brown),
@@ -223,10 +223,12 @@ class _ProfilState extends State<Profil> {
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/ajukan.png')), label: 'Ajukan'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/profile.png')), label: 'Profil'),
         ],
       ),
     );

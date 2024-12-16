@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.4
+  get: ^4.6.5  # Masukkan versi terbaru sesuai dengan pub.dev
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -60,11 +61,17 @@ flutter:
   uses-material-design: true
   assets:
     - assets/illustration.png
+    - assets/Frame.png
+    - assets/home.png
+    - assets/Label.png
+    - assets/profile.png
+    - assets/riwayat.png
+    - assets/ajukan.png
   fonts :
     - family: Inter
       fonts:
-        - asset: fonts/Inter-Regular.ttf
-        - asset: fonts/Inter-Bold.ttf
+        - asset: fonts/Inter-Regular.ttf  # Ensure this path and filename are correct
+        - asset: fonts/Inter-Bold.ttf     # Ensure this path and filename are correct
           weight: 700
 flutter_icons:
   android: "launcher_icon"

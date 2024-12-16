@@ -319,12 +319,12 @@ class _BerandaState extends State<Beranda> {
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add), label: 'Ajukan'),
+              icon: ImageIcon(AssetImage('assets/ajukan.png')), label: 'Ajukan'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Profil'),
+              icon: ImageIcon(AssetImage('assets/profile.png')), label: 'Profil'),
         ],
       ),
     );

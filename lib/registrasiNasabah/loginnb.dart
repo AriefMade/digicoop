@@ -1,9 +1,72 @@
 // text.dart
 import 'package:digicoop/registrasiNasabah/registrasi.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class loginnb extends StatelessWidget {
+class AuthService {
+  final String baseUrl = 'https://localhost:8000/api'; // Replace with your backend URL
+
+  Future<void> registerUser(String email, String username, String password, String idNasabah) async {
+    final url = Uri.parse('$baseUrl/register');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'name': username,
+        'email': email,
+        'password': password,
+        'idNasabah': idNasabah,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      // Success
+      print('User Registered Successfully');
+    } else {
+      // Handle error
+      print('Failed to register user: ${response.body}');
+    }
+  }
+
+  Future<void> loginUser(String email, String password) async {
+    final url = Uri.parse('$baseUrl/login');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // Successfully logged in
+      var data = json.decode(response.body);
+      String token = data['token'];
+      print('User Logged in Successfully, Token: $token');
+    } else {
+      // Handle error
+      print('Login failed: ${response.body}');
+    }
+  }
+}
+
+class loginnb extends StatefulWidget {
   const loginnb({super.key});
+
+  @override
+  _loginnbState createState() => _loginnbState();
+}
+
+  class _loginnbState extends State<loginnb>{
+    final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _usernameController = TextEditingController();
+    final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +108,7 @@ class loginnb extends StatelessWidget {
               ),
               SizedBox(height: 32),
               TextField(
+                controller: _usernameController,
                 decoration: InputDecoration(
                   hintText: 'Masukkan username anda',
                   hintStyle: TextStyle(color: Color(0xFFC5AA95), fontSize: 12),
@@ -57,7 +121,7 @@ class loginnb extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
-              PasswordField(hintText: 'Masukkan password anda'),
+              PasswordField( controller: _passwordController, hintText: 'Masukkan password anda'),
               SizedBox(height: 32),
               Center(
                 child: SizedBox(
@@ -70,8 +134,12 @@ class loginnb extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    onPressed: () {
-                      // Implementasi tombol Daftar
+                    onPressed: () async {
+                      try {
+                        await authService.loginUser(_usernameController.text, _passwordController.text);
+                    } catch (e){
+                        print(e.toString());
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0),
@@ -121,9 +189,10 @@ class loginnb extends StatelessWidget {
 }
 
 class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
 
-  const PasswordField({super.key, required this.hintText});
+  const PasswordField({super.key, required this.controller, required this.hintText});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
