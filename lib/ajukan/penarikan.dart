@@ -255,11 +255,13 @@ class _PenarikanPageState extends State<penarikan> {
             });
           }
         },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        items: const [
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/ajukan.png')), label: 'Ajukan'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/profile.png')), label: 'Profil'),
         ],
       ),
     );

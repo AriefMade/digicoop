@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:digicoop/Pekerja Keliling/nasabah/NasabahPKL.dart';
+import 'package:digicoop/Pekerja Keliling/profil/profilPKL.dart';
 
 class Penarikan extends StatefulWidget {
   const Penarikan({super.key});
@@ -6,7 +8,10 @@ class Penarikan extends StatefulWidget {
   @override
   State<Penarikan> createState() => _PenarikanState();
 }
-class _PenarikanState extends State<Penarikan>{
+
+class _PenarikanState extends State<Penarikan> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +62,13 @@ class _PenarikanState extends State<Penarikan>{
                     status: index == 0
                         ? "Terima"
                         : index == 1 || index == 3
-                        ? "Tunda"
-                        : "Tolak",
+                            ? "Tunda"
+                            : "Tolak",
                     color: index == 0
                         ? Colors.green
                         : index == 2
-                        ? Colors.red
-                        : Colors.blue, //TODO : gak keliatan kalau makek biru
+                            ? Colors.red
+                            : Colors.blue, //TODO : gak keliatan kalau makek biru
                   );
                 },
               ),
@@ -72,22 +77,34 @@ class _PenarikanState extends State<Penarikan>{
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Pilih tab "Nasabah"
         selectedItemColor: Colors.brown,
-        unselectedItemColor: Colors.brown[300],
-        items: [
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NasabahPkl()),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => profilPkl()),
+            );
+          }
+        },
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Beranda",
-          ),
+              icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: "Nasabah",
-          ),
+              icon: ImageIcon(AssetImage('assets/nasabah.png')),
+              label: 'Nasabah'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profil",
-          ),
+              icon: ImageIcon(AssetImage('assets/profile.png')),
+              label: 'Profil'),
         ],
       ),
     );
@@ -109,47 +126,65 @@ class PenarikanCard extends StatelessWidget {
         color: Color(0xFFF3E8E1),
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Nasabah #12345678",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                "Jumlah: Rp. 1.000.000",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.brown,
-                ),
-              ),
-            ],
+          Text(
+            "Nasabah #12345678",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          Column(
-            children: [
-              Text(
-                status,
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.bold,
+          SizedBox(height: 4),
+          Text(
+            "Jumlah: Rp. 1.000.000",
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.brown,
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 8),
+                Text(
+                  status,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown,
+                SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.brown,
+                  ),
+                  child: Container(
+                    width: 268,
+                    height: 24,
+                    decoration: ShapeDecoration(
+                      color: Color(0xFF6A584E),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Detail",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                child: Text("Detail"),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
