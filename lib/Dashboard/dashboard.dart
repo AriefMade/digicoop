@@ -128,8 +128,8 @@ class _BerandaState extends State<Beranda> {
                       _saldoIndex == 0
                           ? 'Saldo Tabungan'
                           : _saldoIndex == 1
-                              ? 'Saldo Deposito'
-                              : 'Sisa Pinjaman',
+                          ? 'Saldo Deposito'
+                          : 'Sisa Pinjaman',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
@@ -141,8 +141,8 @@ class _BerandaState extends State<Beranda> {
                       _saldoIndex == 0
                           ? 'Rp 15.000.000,00'
                           : _saldoIndex == 1
-                              ? 'Rp 25.000.000,00'
-                              : 'Rp 10.000.000,00',
+                          ? 'Rp 25.000.000,00'
+                          : 'Rp 10.000.000,00',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -278,7 +278,7 @@ class _BerandaState extends State<Beranda> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading:
-                        const Icon(Icons.arrow_downward, color: Colors.brown),
+                    const Icon(Icons.arrow_downward, color: Colors.brown),
                     title: const Text(
                       'Pinjaman',
                       style: TextStyle(
@@ -353,7 +353,7 @@ class _BerandaState extends State<Beranda> {
 
 String formatCurrency(double amount) {
   return 'Rp ${amount.toStringAsFixed(0).replaceAllMapped(
-        RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
+    RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
         (match) => '${match[1]}.',
-      )}';
+  )}';
 }

@@ -1,21 +1,43 @@
 import 'package:digicoop/Pekerja%20Keliling/Beranda/berandaPKL.dart';
 import 'package:digicoop/Pekerja%20Keliling/profil/profilPKL.dart';
 import 'package:flutter/material.dart';
+import 'package:digicoop/Pekerja Keliling/nasabah/viewDetails.dart';
 
 class NasabahPkl extends StatefulWidget {
-  const NasabahPkl ({super.key});
+  const NasabahPkl({super.key});
   @override
-  State<NasabahPkl> createState() => NasabahPklState();}
+  State<NasabahPkl> createState() => NasabahPklState();
+}
 
-class NasabahPklState extends State<NasabahPkl>{
-  int _selectedIndex = 0;
+class NasabahPklState extends State<NasabahPkl> {
+  int _selectedIndex = 1;
   // Data dummy untuk daftar nasabah
   final List<Map<String, dynamic>> nasabahList = [
-    {'name': 'Anna Gallagher', 'address': 'Jln. Ratna No. 10, Banjar Luluk', 'status': true},
-    {'name': 'Anna Gallagher', 'address': 'Jln. Ratna No. 10, Banjar Luluk', 'status': false},
-    {'name': 'Anna Gallagher', 'address': 'Jln. Ratna No. 10, Banjar Luluk', 'status': true},
-    {'name': 'Anna Gallagher', 'address': 'Jln. Ratna No. 10, Banjar Luluk', 'status': false},
-    {'name': 'Anna Gallagher', 'address': 'Jln. Ratna No. 10, Banjar Luluk', 'status': true},
+    {
+      'name': 'Anna Gallagher',
+      'address': 'Jln. Ratna No. 10, Banjar Luluk',
+      'status': true
+    },
+    {
+      'name': 'Anna Gallagher',
+      'address': 'Jln. Ratna No. 10, Banjar Luluk',
+      'status': false
+    },
+    {
+      'name': 'Anna Gallagher',
+      'address': 'Jln. Ratna No. 10, Banjar Luluk',
+      'status': true
+    },
+    {
+      'name': 'Anna Gallagher',
+      'address': 'Jln. Ratna No. 10, Banjar Luluk',
+      'status': false
+    },
+    {
+      'name': 'Anna Gallagher',
+      'address': 'Jln. Ratna No. 10, Banjar Luluk',
+      'status': true
+    },
   ];
 
   @override
@@ -73,8 +95,11 @@ class NasabahPklState extends State<NasabahPkl>{
                           children: [
                             // Status icon
                             Icon(
-                              nasabah['status'] ? Icons.check_circle : Icons.cancel,
-                              color: nasabah['status'] ? Colors.green : Colors.red,
+                              nasabah['status']
+                                  ? Icons.check_circle
+                                  : Icons.cancel,
+                              color:
+                                  nasabah['status'] ? Colors.green : Colors.red,
                               size: 24,
                             ),
                             const SizedBox(width: 12),
@@ -108,14 +133,16 @@ class NasabahPklState extends State<NasabahPkl>{
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DetailNasabahPage(nasabah: nasabah),
+                                builder: (context) => viewDetailNb(),
                               ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFFF2E6), // Warna cream button
+                            backgroundColor:
+                                const Color(0xFFFFF2E6), // Warna cream button
                             elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal:   9.0, vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 9.0, vertical: 8.0),
                           ),
                           child: const Text(
                             'View Details',
@@ -141,21 +168,21 @@ class NasabahPklState extends State<NasabahPkl>{
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
         onTap: (index) {
-          setState((){
+          setState(() {
             _selectedIndex = index;
           });
-          if (index == 0){
-            Navigator.push(context,
-                MaterialPageRoute(builder : (context) => BerandaPkl())); }
-          else if (index == 2){
-            Navigator.push(context,
-                MaterialPageRoute(builder : (context) => profilPkl()));
+          if (index == 0) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BerandaPkl()));
+          } else if (index == 2) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => profilPkl()));
           }
         },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Nasabah'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        items: const [
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/nasabah.png')), label: 'Nasabah'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/profile.png')), label: 'Profil'),
         ],
       ),
     );

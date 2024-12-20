@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/ajukan/penarikan.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:digicoop/Riwayat/riwayat.dart';
 import 'package:digicoop/Profil/profil.dart';
@@ -17,7 +20,75 @@ class _AjukanPageState extends State<Ajukan> {
   String selectedJangkaWaktu = "6 Bulan";
   bool isChecked = false;
   int _selectedIndex = 2;
-  
+
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: AlertDialog(
+            backgroundColor: const Color(0xFFEBD9CB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: const Text(
+              "Syarat dan Ketentuan",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF7B5233),
+              ),
+            ),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Divider(thickness: 1.0, color: Color(0xFFC4C4C4)),
+                  const SizedBox(height: 0.5),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        "Anggota yang ingin membuka rekening simpanan di DigiCoop wajib terdaftar sebagai anggota koperasi dan telah memiliki akun pada aplikasi DigiCoop. Simpanan dapat berupa Simpanan Harian atau Simpanan Deposito, dengan nominal minimal Rp1.000.000. Jangka waktu untuk Simpanan Deposito tersedia dalam pilihan 3 bulan, 6 bulan, dan 12 bulan, sedangkan Simpanan Harian dapat dicairkan kapan saja sesuai kebijakan yang berlaku.\n\n"
+                        "Anggota wajib memberikan data yang valid dan benar saat melakukan pendaftaran simpanan. Bunga simpanan akan dihitung berdasarkan kebijakan suku bunga yang berlaku dan akan diberikan secara berkala sesuai dengan ketentuan yang telah disepakati. Anggota juga diwajibkan menjaga saldo minimum sesuai dengan jenis simpanan yang dipilih.\n\n"
+                        "Pencairan Simpanan Deposito sebelum jatuh tempo akan dikenakan penalti sesuai dengan ketentuan yang berlaku. Data pribadi anggota akan diproses sesuai dengan kebijakan privasi DigiCoop. Dengan membuka rekening simpanan, anggota dianggap telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan ini. Ketentuan ini dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya.",
+                        style: TextStyle(fontSize: 14, color: Color(0xFF6A584E)),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 0.5),
+                ],
+              ),
+            ),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  alignment: Alignment.center,
+                  backgroundColor: const Color(0xFF7B5233),
+                  minimumSize: const Size(300, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Implement logic for submission here
+                },
+                child: const Text(
+                  "Kembali",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +98,7 @@ class _AjukanPageState extends State<Ajukan> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Ajukan",
               style: TextStyle(
                 color: Color(0xFF7B5233),
@@ -35,7 +106,7 @@ class _AjukanPageState extends State<Ajukan> {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
@@ -60,18 +131,18 @@ class _AjukanPageState extends State<Ajukan> {
                         MaterialPageRoute(builder: (context) => penarikan()),
                       );
                     },
-                  child: _buildTabButton("Penarikan", false),
-                ),
+                    child: _buildTabButton("Penarikan", false),
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Align(
               alignment: Alignment.centerRight,
               child: DropdownButton<String>(
                 value: "Simpanan Deposito",
-                icon: Icon(Icons.arrow_drop_down),
-                style: TextStyle(
+                icon: const Icon(Icons.arrow_drop_down),
+                style: const TextStyle(
                   color: Color(0xFF7B5233),
                   fontSize: 16,
                 ),
@@ -93,8 +164,8 @@ class _AjukanPageState extends State<Ajukan> {
                 }).toList(),
               ),
             ),
-            SizedBox(height: 24),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               "Nominal",
               style: TextStyle(
                 color: Color(0xFF7B5233),
@@ -102,52 +173,52 @@ class _AjukanPageState extends State<Ajukan> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 7),
+            const SizedBox(height: 7),
             Column(
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _buildOptionButton("Rp1.000.000", selectedNominal),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     _buildOptionButton("Rp2.000.000", selectedNominal),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     _buildOptionButton("Rp5.000.000", selectedNominal),
                   ],
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Center(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildOptionButton("Rp10.000.000", selectedNominal),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       _buildOptionButton("Rp20.000.000", selectedNominal),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       _buildOptionButton("Rp50.000.000", selectedNominal),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               selectedNominal,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF7B5233),
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Text(
+            const Text(
               "Minimum nominal Rp1.000.000",
               style: TextStyle(
                 color: Color(0xFF7B5233),
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 24),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               "Jangka Waktu",
               style: TextStyle(
                 color: Color(0xFF7B5233),
@@ -155,28 +226,28 @@ class _AjukanPageState extends State<Ajukan> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
                   child: _buildOptionButton("3 Bulan", selectedJangkaWaktu),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Expanded(
                   child: _buildOptionButton("6 Bulan", selectedJangkaWaktu),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Expanded(
                   child: _buildOptionButton("12 Bulan", selectedJangkaWaktu),
                 ),
               ],
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   // Additional UI elements
                 ],
               ),
@@ -190,25 +261,29 @@ class _AjukanPageState extends State<Ajukan> {
                       isChecked = value ?? false;
                     });
                   },
-                  activeColor: Color(0xFF7B5233),
+                  activeColor: const Color(0xFF7B5233),
                 ),
                 Flexible(
                   child: RichText(
                     text: TextSpan(
                       text: "Saya menyetujui ",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xB0B35933),
                         fontSize: 12,
                       ),
                       children: [
                         TextSpan(
                           text: "syarat dan ketentuan ",
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             color: Color(0xFFB35933),
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              _showConfirmationDialog(); // Display modal
+                            },
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: "yang berlaku",
                         ),
                       ],
@@ -218,17 +293,19 @@ class _AjukanPageState extends State<Ajukan> {
               ],
             ),
             ElevatedButton(
-              onPressed: isChecked ? () {
-                // Define button action
-              } : null,
+              onPressed: isChecked
+                  ? () {
+                      // Define button action
+                    }
+                  : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF7B5233),
-                minimumSize: Size(double.infinity, 50),
+                backgroundColor: const Color(0xFF7B5233),
+                minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: Text(
+              child: const Text(
                 "Ajukan",
                 style: TextStyle(
                   color: Colors.white,
@@ -249,22 +326,28 @@ class _AjukanPageState extends State<Ajukan> {
               _selectedIndex = index;
             });
             Future.microtask(() {
-              if (index == 0) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Beranda()));
-              } else if (index == 1) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Riwayat()));
-              } else if (index == 3) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Profil()));
+              switch (index) {
+                case 0:
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Beranda()));
+                  break;
+                case 1:
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Riwayat()));
+                  break;
+                case 3:
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Profil()));
+                  break;
               }
             });
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
-          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
           BottomNavigationBarItem(
               icon: ImageIcon(AssetImage('assets/ajukan.png')), label: 'Ajukan'),
           BottomNavigationBarItem(
@@ -276,16 +359,16 @@ class _AjukanPageState extends State<Ajukan> {
 
   Widget _buildTabButton(String label, bool isActive) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        color: isActive ? Color(0xFF6A584E) : Color(0xFFFFEBDC),
+        color: isActive ? const Color(0xFF6A584E) : const Color(0xFFFFEBDC),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         label,
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: isActive ? Colors.white : Color(0xFF7B5233),
+          color: isActive ? Colors.white : const Color(0xFF7B5233),
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -306,15 +389,15 @@ class _AjukanPageState extends State<Ajukan> {
       },
       child: Container(
         width: 113,
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFF7B5233) : Color(0xFFFFEBDC),
+          color: isSelected ? const Color(0xFF7B5233) : const Color(0xFFFFEBDC),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: isSelected ? Colors.white : Color(0xFF7B5233),
+            color: isSelected ? Colors.white : const Color(0xFF7B5233),
             fontWeight: FontWeight.w600,
             fontSize: 12,
           ),

@@ -103,23 +103,23 @@ class _PenarikanrwtState extends State<Penarikanrwt> {
                 children: [
                   _buildTransactionDate("12 Juli 2024"),
                   _buildTransactionItem(
-                      "Rp 20.000,00", "Tabungan Harian", "Berhasil", Colors.green),
+                      "Rp 20.000,00", "Tabungan Harian", "Selesai", Colors.green),
                   _buildTransactionItem(
-                      "Rp 4.000,00", "Bunga Tabungan", "Berhasil", Colors.green),
+                      "Rp 4.000,00", "Bunga Tabungan", "Selesai", Colors.green),
                   _buildTransactionDate("11 Juli 2024"),
                   _buildTransactionItem(
-                      "Rp 20.000,00", "Tabungan Harian", "Gagal", Colors.red),
+                      "Rp 20.000,00", "Tabungan Harian", "Pending", Colors.orange),
                   _buildTransactionItem(
-                      "Rp 4.000,00", "Bunga Tabungan", "Berhasil", Colors.green),
+                      "Rp 4.000,00", "Bunga Tabungan", "Selesai", Colors.green),
                   _buildTransactionItem("Rp 500.000,00", "Deposito 6 Bulan",
                       "Pending", Colors.orange),
                   _buildTransactionDate("10 Juli 2024"),
                   _buildTransactionItem(
-                      "Rp 200.000,00", "Tabungan Harian", "Berhasil", Colors.green),
+                      "Rp 200.000,00", "Tabungan Harian", "Selesai", Colors.green),
                   _buildTransactionItem(
-                      "Rp 30.000,00", "Bunga Deposito", "Berhasil", Colors.green),
+                      "Rp 30.000,00", "Bunga Deposito", "Selesai", Colors.green),
                   _buildTransactionItem(
-                      "Rp 100.000,00", "Tabungan Harian", "Berhasil", Colors.green),
+                      "Rp 100.000,00", "Tabungan Harian", "Selesai", Colors.green),
                 ],
               ),
             ),
@@ -148,11 +148,13 @@ class _PenarikanrwtState extends State<Penarikanrwt> {
             });
           }
         },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Riwayat'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Ajukan'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        items: const [
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/home.png')), label: 'Beranda'),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/riwayat.png')), label: 'Riwayat'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/ajukan.png')), label: 'Ajukan'),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('assets/profile.png')), label: 'Profil'),
         ],
       ),
     );

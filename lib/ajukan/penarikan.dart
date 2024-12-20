@@ -1,3 +1,5 @@
+import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:digicoop/Dashboard/dashboard.dart';
 import 'package:digicoop/ajukan/ajukan.dart';
 import 'package:digicoop/ajukan/pilihbank.dart';
@@ -18,6 +20,74 @@ class _PenarikanPageState extends State<penarikan> {
   String selectedJangkaWaktu = "6 Bulan";
   bool isChecked = false;
   int _selectedIndex = 2;
+
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: AlertDialog(
+            backgroundColor: const Color(0xFFEBD9CB),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: const Text(
+              "Syarat dan Ketentuan",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF7B5233),
+              ),
+            ),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Divider(thickness: 1.0, color: Color(0xFFC4C4C4)),
+                  const SizedBox(height: 0.5),
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        "Penarikan hanya dapat dilakukan oleh anggota yang telah terdaftar dan memiliki akun aktif di aplikasi DigiCoop. Nominal penarikan minimum yang diizinkan adalah Rp1.000.000, sementara nominal maksimum bergantung pada saldo simpanan anggota. Anggota dapat memilih metode penarikan yang tersedia, seperti melalui E-Wallet, transfer bank, atau penarikan tunai di kantor koperasi.\n\n"
+                            "Proses penarikan mewajibkan anggota memberikan data yang valid dan akurat. Kesalahan dalam pengisian data dapat menyebabkan keterlambatan atau kegagalan transaksi. Beberapa metode penarikan mungkin dikenakan biaya administrasi sesuai dengan kebijakan DigiCoop. Semua data pribadi anggota akan diproses dengan mengacu pada kebijakan privasi yang berlaku untuk memastikan keamanan dan kerahasiaan data.\n\n"
+                            "Dengan mengajukan penarikan, anggota dianggap telah membaca, memahami, dan menyetujui syarat dan ketentuan ini. DigiCoop berhak mengubah ketentuan penarikan sewaktu-waktu tanpa pemberitahuan sebelumnya. Oleh karena itu, anggota disarankan untuk selalu memeriksa informasi terbaru terkait kebijakan penarikan melalui aplikasi DigiCoop.",
+                        style: TextStyle(fontSize: 14, color: Color(0xFF6A584E)),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 0.5),
+                ],
+              ),
+            ),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  alignment: Alignment.center,
+                  backgroundColor: const Color(0xFF7B5233),
+                  minimumSize: const Size(300, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Implement logic for submission here
+                },
+                child: const Text(
+                  "Kembali",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,10 +266,14 @@ class _PenarikanPageState extends State<penarikan> {
                       children: [
                         TextSpan(
                           text: "syarat dan ketentuan ",
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             color: Color(0xFFB35933),
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              _showConfirmationDialog(); // Display modal
+                            },
                         ),
                         TextSpan(
                           text: "yang berlaku",

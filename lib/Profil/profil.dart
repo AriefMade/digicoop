@@ -23,7 +23,7 @@ class _ProfilState extends State<Profil> {
 
   void _showEditConfirmation(String field) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$field has been changed!')),
+      SnackBar(content: Text('$field sudah diganti!')),
     );
   }
 
@@ -56,7 +56,7 @@ class _ProfilState extends State<Profil> {
                   onPressed: () {
                     _editField(title, controller);
                   },
-                )
+                      )
               : Container(), // Empty container if not editable
         ],
       ),
@@ -115,7 +115,7 @@ class _ProfilState extends State<Profil> {
             const SizedBox(height: 20),
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/avatar.jpg'),
+              backgroundImage: AssetImage('asset/profilgambar.jpg'),
             ),
             const SizedBox(height: 15),
             const Text(
